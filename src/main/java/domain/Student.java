@@ -4,13 +4,21 @@
  */
 package domain;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
 import java.time.LocalDate;
 
 /**
  *
  * @author ctkee
  */
+@Entity
+@Table
 public class Student {
+
+    @Id
     public String studentID;
     public String password;
 

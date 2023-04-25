@@ -4,10 +4,15 @@
  */
 package domain;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
 /**
  *
  * @author ctkee
  */
+@Entity
+@Table
 public class ResearchOpportunity {
     public String title;
     public String type;

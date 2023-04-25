@@ -4,12 +4,17 @@
  */
 package domain;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
 import java.time.LocalDateTime;
 
 /**
  *
  * @author ctkee
  */
+@Entity
+@Table
 public class Event {
    public String eventID;
    public String title;
