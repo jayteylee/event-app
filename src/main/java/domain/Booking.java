@@ -9,6 +9,7 @@ package domain;
  * @author ctkee
  */
 public class Booking {
+
     public String eventID;
     public String studentID;
 

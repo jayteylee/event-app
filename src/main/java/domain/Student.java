@@ -1,49 +1,50 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package domain;
 
+import jakarta.persistence.*;
 import java.time.LocalDate;
 
-/**
- *
- * @author ctkee
- */
+@Entity
+@Table
 public class Student {
-    public String studentID;
-    public String password;
 
-    public String getStudentID() {
-        return studentID;
+    @Id
+    @SequenceGenerator(
+            name = "student_sequence",
+            sequenceName = "student_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "student_sequence"
+    )
+    private Long id;
+    private String name;
+    private String email;
+    private LocalDate dob;
+
+    public Student() {}
+
+    public Student(Long id, String name, String email, LocalDate dob) {
+        this.id = id;
+        this.email = email;
+        this.name = name;
+        this.dob = dob;
     }
 
-    public void setStudentID(String studentID) {
-        this.studentID = studentID;
+    public Long getId() {
+        return id;
     }
 
-    public String getPassword() {
-        return password;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public String getName() {
+        return name;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
@@ -54,53 +55,11 @@ public class Student {
         this.email = email;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public LocalDate getDob() {
+        return dob;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setDob(LocalDate dob) {
+        this.dob = dob;
     }
-
-    public LocalDate getDOB() {
-        return DOB;
-    }
-
-    public void setDOB(LocalDate DOB) {
-        this.DOB = DOB;
-    }
-
-    public String getDegree() {
-        return degree;
-    }
-
-    public void setDegree(String degree) {
-        this.degree = degree;
-    }
-
-    public String getMajor() {
-        return major;
-    }
-
-    public void setMajor(String major) {
-        this.major = major;
-    }
-
-    public String getIwi() {
-        return iwi;
-    }
-
-    public void setIwi(String iwi) {
-        this.iwi = iwi;
-    }
-    public String firstName;
-    public String lastName;
-    public String email;
-    public String phoneNumber;
-    public LocalDate DOB;
-    public String degree;
-    public String major;
-    public String iwi;
-    
-    
 }

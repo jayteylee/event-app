@@ -4,11 +4,15 @@
  */
 package domain;
 
+import jakarta.persistence.Id;
+
 /**
  *
  * @author ctkee
  */
 public class Scholarship {
+
+    @Id
     public String name;
     public String type;
     public String subject;

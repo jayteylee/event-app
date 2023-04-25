@@ -12,12 +12,10 @@ public class Main {
         SpringApplication.run(Main.class, args);
     }
 
-
     @GetMapping("/")
     public static String home(){
         return "Welcome home";
     }
-
 
     @GetMapping("/home")
     public static String greeting(){
