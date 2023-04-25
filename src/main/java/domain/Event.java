@@ -1,33 +1,51 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+* Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+* Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+*/
 package domain;
+
+import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
-/**
- *
- * @author ctkee
- */
+@Entity
 public class Event {
-   public String eventID;
-   public String title;
-   public String type;
-   public LocalDateTime startTime;
-   public LocalDateTime endTime;
-   public String subject;
-   public String category;
-   public String location;
-   public int capacity;
-   public String description;
 
-    public String getEventID() {
-        return eventID;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    private String title;
+    private String type;
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
+    private String subject;
+    private String category;
+    private String location;
+    private int capacity;
+    private String description;
+
+    public Event() {
     }
 
-    public void setEventID(String eventID) {
-        this.eventID = eventID;
+    public Event(int id, String title, String type, LocalDateTime startTime, LocalDateTime endTime, String subject, String category, String location, int capacity, String description) {
+        this.id = id;
+        this.title = title;
+        this.type = type;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.subject = subject;
+        this.category = category;
+        this.location = location;
+        this.capacity = capacity;
+        this.description = description;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitle() {

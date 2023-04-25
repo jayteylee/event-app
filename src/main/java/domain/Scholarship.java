@@ -12,7 +12,6 @@ import jakarta.persistence.Id;
  */
 public class Scholarship {
 
-    @Id
     public String name;
     public String type;
     public String subject;
