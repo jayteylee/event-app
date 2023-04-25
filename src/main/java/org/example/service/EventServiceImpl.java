@@ -1,9 +1,9 @@
-package service;
+package org.example.service;
 
-import domain.Event;
+import org.example.domain.Event;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import repository.EventRepository;
+import org.example.repository.EventRepository;
 
 import java.time.LocalDateTime;
 import java.util.List;

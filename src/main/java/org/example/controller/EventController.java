@@ -1,15 +1,16 @@
-package controller;
+package org.example.controller;
 
-import domain.Event;
+import org.example.domain.Event;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import service.EventService;
+import org.example.service.EventService;
 
 import java.util.List;
 
-@Controller
 public class EventController {
+
+    @Autowired
+    private EventService eventService;
 
     @GetMapping("/")
     public static String greeting(){
@@ -23,24 +24,24 @@ public class EventController {
 
     @PostMapping("/add/{id}")
     public String add(@RequestBody Event event){
-//        eventService.saveEvent(event);
+        eventService.saveEvent(event);
         return "New event added";
     }
 
-//    @GetMapping("/getAll")
-//    public List<Event> getAllEvents(){
-//        return eventService.getAllEvents();
-//    }
+    @GetMapping("/getAll")
+    public List<Event> getAllEvents(){
+        return eventService.getAllEvents();
+    }
 
     @PostMapping("/update")
     public String updateEvent(@RequestBody Event event){
-//        eventService.updateEvent(event);
+        eventService.updateEvent(event);
         return "Event has been updated";
     }
 
     @PostMapping("/delete")
     public String deleteEvent(@RequestBody Event event){
-//        eventService.deleteEvent(event);
+        eventService.deleteEvent(event);
         return "Event has been deleted";
     }
 }

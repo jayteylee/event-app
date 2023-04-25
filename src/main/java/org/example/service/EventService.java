@@ -1,6 +1,6 @@
-package service;
+package org.example.service;
 
-import domain.Event;
+import org.example.domain.Event;
 import java.util.List;
 
 public interface EventService {

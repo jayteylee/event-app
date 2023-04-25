@@ -1,6 +1,6 @@
-package repository;
+package org.example.repository;
 
-import domain.Event;
+import org.example.domain.Event;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
