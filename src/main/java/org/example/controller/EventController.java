@@ -30,8 +30,8 @@ public class EventController{
     }
 
     @PostMapping("/events")
-    Event createEvent (@ModelAttribute("event") Event event){
-        return eventService.createEvent(event);
+    Event createEvent (@RequestBody Event newEvent){
+        return eventService.createEvent(newEvent);
     }
 
     @PutMapping("/events/{id}")
@@ -43,5 +43,4 @@ public class EventController{
     Event deleteEvent(@PathVariable Long id) {
         return eventService.deleteEvent(id);
     }
-
 }
