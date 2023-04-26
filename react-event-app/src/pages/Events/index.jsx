@@ -25,50 +25,50 @@ function Events() {
     }
     return (
         <div className='w-screen h-screen'>
-            <div className='relative flex flex-col h-full'>
                 <HeaderSection></HeaderSection>
-                <div className='h-full w-full flex flex-col'>
-                    <Navigation></Navigation>
-                    <button value="create-event" type="button" onClick={handleClick} className="font-poppins text-blue-900 mx-2">Create Event</button>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Event ID</th>
-                                <th>Title</th>
-                                <th>Type</th>
-                                <th>Start Time</th>
-                                <th>End Time</th>
-                                <th>Subject</th>
-                                <th>Category</th>
-                                <th>Location</th>
-                                <th>Capacity</th>
-                                <th>Description</th>
-                            </tr>
-                        </thead>
+                <Navigation></Navigation>
+                    <table className="table-auto relative shadow-lg rounded-lg overflow-hidden">
+                        <tr>
+                            <th className="bg-blue-100 border border-black text-left px-8 py-4">Event ID</th>
+                            <th className="bg-blue-100 border border-black text-left px-8 py-4">Title</th>
+                            <th className="bg-blue-100 border border-black text-left px-8 py-4">Type</th>
+                            <th className="bg-blue-100 border border-black text-left px-8 py-4">Start Time</th>
+                            <th className="bg-blue-100 border border-black text-left px-8 py-4">End Time</th>
+                            <th className="bg-blue-100 border border-black text-left px-8 py-4">Subject</th>
+                            <th className="bg-blue-100 border border-black text-left px-8 py-4">Category</th>
+                            <th className="bg-blue-100 border border-black text-left px-8 py-4">Location</th>
+                            <th className="bg-blue-100 border border-black text-left px-8 py-4">Capacity</th>
+                            <th className="bg-blue-100 border border-black text-left px-8 py-4">Description</th>
+                            <th className="bg-blue-100 border border-black text-center px-8 py-4">Change</th>
+                        </tr>
                         <tbody>
                             {
-                                events.map((event, index) => (
+                                events.map((event) => (
                                     <tr>
-                                    <th scrope="row" key = {index}>{index+1}</th>
-                                    <td>{event.eventID}</td>
-                                    <td>{event.title}</td>
-                                    <td>{event.type}</td>
-                                    <td>{event.startTime}</td>
-                                    <td>{event.endTime}</td>
-                                    <td>{event.subject}</td>
-                                    <td>{event.category}</td>
-                                    <td>{event.location}</td>
-                                    <td>{event.capacity}</td>
-                                    <td>{event.description}</td>
-                                </tr>
+                                        <td className="border px-8 py-4">{event.eventID}</td>
+                                        <td className="border px-8 py-4">{event.title}</td>
+                                        <td className="border px-8 py-4">{event.type}</td>
+                                        <td className="border px-8 py-4">{event.startTime}</td>
+                                        <td className="border px-8 py-4">{event.endTime}</td>
+                                        <td className="border px-8 py-4">{event.subject}</td>
+                                        <td className="border px-8 py-4">{event.category}</td>
+                                        <td className="border px-8 py-4">{event.location}</td>
+                                        <td className="border px-8 py-4">{event.capacity}</td>
+                                        <td className="border px-8 py-4">{event.description}</td>
+                                        <div className="flex flex-row justify-center items-center border px-8 py-4">
+                                            <button className="px-6 py-1 mx-5 rounded-md shadow-md hover:bg-yellow-100">EDIT</button>
+                                            <button className="px-6 py-1 mx-5 rounded-md shadow-md bg-red-500 hover:bg-red-900">DELETE</button>
+                                        </div>
+                                    </tr>
+
                                 ))
                             }
 
                         </tbody>
                     </table>
+                <div className="flex flex-row justify-center h-10 my-7">
+                    <button value="create-event" type="button" onClick={handleClick} className="justify-center w-2/12 border shadow-md font-poppins text-blue-900 mx-2">Create Event</button>
                 </div>
-
             </div>
-        </div>
     )
 } export default Events;
