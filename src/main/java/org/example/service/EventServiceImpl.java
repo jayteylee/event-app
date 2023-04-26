@@ -16,16 +16,12 @@ import java.util.List;
 @Service
 public class EventServiceImpl implements EventService  {
 
-    private final EventRepository eventRepository;
-
     @Autowired
-    public EventServiceImpl(EventRepository eventRepository){
-        this.eventRepository = eventRepository;
-    }
+    private EventRepository eventRepository;
 
     @Override
-    public Event createEvent(Event event) {
-        return eventRepository.save(event);
+    public Event createEvent(Event newEvent) {
+        return eventRepository.save(newEvent);
     }
 
     @Override
@@ -40,12 +36,7 @@ public class EventServiceImpl implements EventService  {
     }
 
     @Override
-    public Event updateEvent(Long id) {
-        return null;
-    }
-
-    @Override
-    public Event updateUser(@RequestBody Event newEvent, @PathVariable Long id) {
+    public Event updateEvent(Event newEvent, Long id) {
         return eventRepository.findById(id)
                 .map(event -> {
                     event.setTitle(newEvent.getTitle());
@@ -62,11 +53,12 @@ public class EventServiceImpl implements EventService  {
 
 
     @Override
-    public Event deleteEvent(@PathVariable Long id){
+    public Event deleteEvent(Long id){
         if(!eventRepository.existsById(id)){
             throw new EventNotFoundException(id);
         }
+        Event event = eventRepository.getReferenceById(id);
         eventRepository.deleteById(id);
-        return eventRepository.getReferenceById(id);
+        return event;
     }
 }

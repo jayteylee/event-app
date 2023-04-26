@@ -1,26 +1,31 @@
 package org.example.controller;
 
 import org.example.domain.Event;
-import org.example.repository.EventRepository;
 import org.example.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin("http://localhost:3000")
 public class EventController{
 
     @Autowired
-    EventService eventService;
+    private EventService eventService;
+
+    public EventController(EventService eventService) {
+        this.eventService = eventService;
+    }
 
     @GetMapping("/events")
-    public ResponseEntity getAllEvents(){
-        return ResponseEntity.ok(this.eventService.getAllEvents());
+    List<Event> getAllEvents(){
+        return eventService.getAllEvents();
     }
 
     @GetMapping("/events/{id}")
-    Event getEventById (@PathVariable("eventId") Long id){
+    Event getEventById(@PathVariable Long id) {
         return eventService.getEventById(id);
     }
 
@@ -29,14 +34,14 @@ public class EventController{
         return eventService.createEvent(event);
     }
 
-    @PutMapping("/events")
-    Event updateEvent (@PathVariable("eventId") Long id){
-        return eventService.updateEvent(id);
+    @PutMapping("/events/{id}")
+    Event updateEvent (@ModelAttribute("event") Event event, @PathVariable("id") Long id){
+        return eventService.updateEvent(event, id);
     }
 
-    @DeleteMapping("/events/delete/{id}")
-    public ResponseEntity deleteEvent(@PathVariable("eventId") Long id){
-        return ResponseEntity.ok(eventService.deleteEvent(id));
+    @DeleteMapping("/events/{id}")
+    Event deleteEvent(@PathVariable Long id) {
+        return eventService.deleteEvent(id);
     }
 
 }

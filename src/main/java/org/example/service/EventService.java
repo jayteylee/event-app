@@ -16,9 +16,7 @@ public interface EventService {
 
     Event getEventById(Long id);
 
-    Event updateEvent(Long id);
-
-    Event updateUser(Event newEvent, Long id);
+    Event updateEvent(Event newEvent, Long id);
 
     Event deleteEvent(Long id);
 }
