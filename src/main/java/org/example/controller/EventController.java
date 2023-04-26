@@ -30,12 +30,12 @@ public class EventController{
     }
 
     @PostMapping("/events")
-    Event createEvent (@RequestBody Event newEvent){
-        return eventService.createEvent(newEvent);
+    Event createEvent(@RequestBody Event event){
+        return eventService.createEvent(event);
     }
 
     @PutMapping("/events/{id}")
-    Event updateEvent (@ModelAttribute("event") Event event, @PathVariable("id") Long id){
+    Event updateEvent(@RequestBody Event event, @PathVariable Long id){
         return eventService.updateEvent(event, id);
     }
 

@@ -39,6 +39,7 @@ public class EventServiceImpl implements EventService  {
     public Event updateEvent(Event newEvent, Long id) {
         return eventRepository.findById(id)
                 .map(event -> {
+                    System.out.println(event.getEventID() + " " + newEvent.getCapacity());
                     event.setTitle(newEvent.getTitle());
                     event.setType(newEvent.getType());
                     event.setStartTime(newEvent.getStartTime());
@@ -46,6 +47,7 @@ public class EventServiceImpl implements EventService  {
                     event.setSubject(newEvent.getSubject());
                     event.setLocation(newEvent.getLocation());
                     event.setCategory(newEvent.getCategory());
+                    event.setCapacity(newEvent.getCapacity());
                     event.setDescription(newEvent.getDescription());
                     return eventRepository.save(event);
                 }).orElseThrow(() -> new EventNotFoundException(id));
