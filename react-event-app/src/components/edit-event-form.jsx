@@ -12,7 +12,6 @@ function EditEventForm(props) {
     const [startTime, setStartTime] = useState('');
     const [endTime, setEndTime] = useState('');
     const [subject, setSubject] = useState('');
-    const [category, setCategory] = useState('');
     const [location, setLocation] = useState('');
     const [capacity, setCapacity] = useState('');
     const [description, setDescription] = useState('');
@@ -25,7 +24,6 @@ function EditEventForm(props) {
             startTime: startTime,
             endTime: endTime,
             subject: subject,
-            category: category,
             location: location,
             capacity: capacity,
             description: description
@@ -35,7 +33,8 @@ function EditEventForm(props) {
 
     useEffect(() => {
         loadUser();
-    }, [])
+    }, []);
+
     const loadUser = async () => {
         const result = await axios.get(`http://localhost:8081/events/${id}`)
         setTitle(result.data.title);
@@ -43,7 +42,6 @@ function EditEventForm(props) {
         setStartTime(result.data.startTime);
         setEndTime(result.data.endTime);
         setSubject(result.data.subject);
-        setCategory(result.data.category);
         setLocation(result.data.location);
         setCapacity(result.data.capacity);
         setDescription(result.data.description);
@@ -55,54 +53,54 @@ function EditEventForm(props) {
     }
     return (
         <div className="w-full h-full flex justify-center mt-28">
-                <div className="border rounded-lg shadow-lg flex flex-col justify-center">
-                    <h2 className="text-3xl font-bold text-center mt-8">Create Event</h2>
-                    <div className="">
-                        <form onSubmit={(e) => handleSubmit(e)} className="flex flex-col justify-center px-10 py-5">
-                            <label className="my-2 border rounded-md px-2">
-                                Title:
-                                <input className="mx-2" type="text" placeHolder="Enter event title..." value={title} onChange={(e) => setTitle(e.target.value)} />
-                            </label>
-                            <label className="my-2 border rounded-md px-2">
-                                Type:
-                                <input className="mx-2" type="text" placeHolder="Enter event type..." value={type} onChange={(e) => setType(e.target.value)} />
-                            </label>
-                            <label className="my-2 border rounded-md px-2">
-                                Start Time:
-                                <input className="mx-2" type="datetime-local" placeHolder="Enter event start time..." value={startTime} onChange={(e) => setStartTime(e.target.value)} />
-                            </label>
-                            <label className="my-2 border rounded-md px-2">
-                                End Time:
-                                <input className="mx-2" type="datetime-local" placeHolder="Enter event end time..." value={endTime} onChange={(e) => setEndTime(e.target.value)} />
-                            </label>
-                            <label className="my-2 border rounded-md px-2">
-                                Subject:
-                                <input className="mx-2" type="text" placeHolder="Enter event subject..." value={subject} onChange={(e) => setSubject(e.target.value)} />
-                            </label>
-                            <label className="my-2 border rounded-md px-2">
-                                Category:
-                                <input className="mx-2" type="text" placeHolder="Enter event category..." value={category} onChange={(e) => setCategory(e.target.value)} />
-                            </label>
-                            <label className="my-2 border rounded-md px-2">
-                                Location:
-                                <input className="mx-2" type="text" placeHolder="Enter event location..." value={location} onChange={(e) => setLocation(e.target.value)} />
-                            </label>
-                            <label className="my-2 border rounded-md px-2">
-                                Capacity:
-                                <input className="mx-2" type="number" placeHolder="Enter event capacity..." value={capacity} onChange={(e) => setCapacity(e.target.value)} />
-                            </label>
-                            <label className="flex justify-start my-2 border rounded-md px-2">
-                                Description:
-                                <textarea className="mx-2" value={description} placeHolder="..." onChange={(e) => setDescription(e.target.value)} />
-                            </label>
-                            <div className="flex flex-row justify-center">
-                                <button type="submit" className="mx-5 px-4 rounded-md border shadow-md hover:bg-yellow-100">Update</button>
-                                <button onClick={onCancelClick} className="mx-5 px-4 rounded-md border shadow-md bg-red-500 hover:bg-red-900">CANCEL</button>
-                            </div>
-                        </form>
+        <div className="border rounded-lg shadow-lg flex flex-col justify-center">
+            <h2 className="text-3xl font-bold text-center mt-8">Update Event</h2>
+            <div className="">
+                <form onSubmit={(e) => handleSubmit(e)} className="flex flex-col justify-center px-10 py-5">
+                    <div class="relative z-0 w-full mb-6 group">
+                        <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" "/>
+                        <label class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Title</label>
                     </div>
+                    <div class="relative z-0 w-full mb-6 group">
+                        <input type="datetime-local" value={startTime} onChange={(e) => setStartTime(e.target.value)}class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                        <label class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Start Time</label>
+                    </div>
+                    <div class="relative z-0 w-full mb-6 group">
+                        <input type="datetime-local" value={endTime} onChange={(e) => setEndTime(e.target.value)} class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" "/>
+                        <label class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">End Time</label>
+                    </div>
+                    <div class="grid md:grid-cols-2 md:gap-6">
+                    <div class="relative z-0 w-full mb-6 group">
+                        <input type="text" value={subject} onChange={(e) => setSubject(e.target.value)} class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" "/>
+                        <label class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Subject</label>
+                    </div>
+                    <div class="relative z-0 w-full mb-6 group">
+                        <input type="text" value={location} onChange={(e) => setLocation(e.target.value)} class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" "/>
+                        <label class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Location</label>
+                    </div>
+                </div>
+                <div class="grid md:grid-cols-2 md:gap-6">
+                <div class="relative z-0 w-full mb-6 group">
+                        <input type="text" value={type} onChange={(e) => setType(e.target.value)} class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" "/>
+                        <label class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Type</label>
+                    </div>
+                    <div class="relative z-0 w-full mb-6 group">
+                        <input value={capacity} onChange={(e) => setCapacity(e.target.value)} class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                        <label class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Capacity</label>
+                    </div>
+                </div>
+                <div class="relative z-0 w-full mb-6 group">
+                        <textarea type="text" value={description} onChange={(e) => setDescription(e.target.value)}  class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" "/>
+                        <label class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Description</label>
+                    </div>
+                    <div className="flex flex-row justify-center">
+                        <button type="submit" className="transition-all mx-5 px-4 rounded-md border shadow-md border-blue-500 text-blue-500 hover:text-white hover:bg-blue-500">Update</button>
+                        <button onClick={onCancelClick} className="transition-all mx-5 px-4 rounded-md border shadow-md border-red-500 hover:bg-red-500 hover:text-white text-red-500">Cancel</button>
+                    </div>
+                </form>
             </div>
-
         </div>
+
+    </div>
     )
 } export default EditEventForm;

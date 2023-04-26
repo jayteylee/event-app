@@ -9,7 +9,7 @@ function Login() {
                 <HeaderSection></HeaderSection>
                 <div className='h-full w-full flex flex-col'>
                     <Navigation></Navigation>
-                    <LoginForm></LoginForm>
+                    <p>this is the log in page</p>
                 </div>
 
             </div>

@@ -3,13 +3,8 @@ package org.example.service;
 import org.example.domain.Event;
 import org.example.exception.EventNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 import org.example.repository.EventRepository;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -46,7 +41,6 @@ public class EventServiceImpl implements EventService  {
                     event.setEndTime(newEvent.getEndTime());
                     event.setSubject(newEvent.getSubject());
                     event.setLocation(newEvent.getLocation());
-                    event.setCategory(newEvent.getCategory());
                     event.setCapacity(newEvent.getCapacity());
                     event.setDescription(newEvent.getDescription());
                     return eventRepository.save(event);
