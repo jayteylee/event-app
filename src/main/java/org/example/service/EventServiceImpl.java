@@ -1,38 +1,74 @@
 package org.example.service;
 
 import org.example.domain.Event;
+import org.example.exception.EventNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 import org.example.repository.EventRepository;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
 public class EventServiceImpl implements EventService  {
 
+    private final EventRepository eventRepository;
+
     @Autowired
-    private EventRepository eventRepository;
+    public EventServiceImpl(EventRepository eventRepository){
+        this.eventRepository = eventRepository;
+    }
 
     @Override
-    public void saveEvent(Event event) {
-        eventRepository.save(event);
+    public Event createEvent(Event event) {
+        return eventRepository.save(event);
     }
 
     @Override
     public List<Event> getAllEvents() {
-        Event event = new Event(123456, "Information Science Career Fair", "Career Fair", LocalDateTime.parse("2023-06-01T16:00:00"), LocalDateTime.parse("2023-06-01 16:00:00"), "Information Science", "Career Development", "Owheo Building, Dunedin", 100, "Come meet with potential employers in the Information Science field!");
-        return List.of(event);
-//        return eventRepository.findAll();
+        return eventRepository.findAll();
     }
 
     @Override
-    public void updateEvent(Event event) {
-        eventRepository.save(event);
+    public Event getEventById(Long id) {
+        return eventRepository.findById(id)
+                .orElseThrow(() -> new EventNotFoundException(id));
     }
 
     @Override
-    public void deleteEvent(Event event) {
-        eventRepository.delete(event);
+    public Event updateEvent(Long id) {
+        return null;
+    }
+
+    @Override
+    @PutMapping("/user/{id}")
+    public Event updateUser(@RequestBody Event newEvent, @PathVariable Long id) {
+        return eventRepository.findById(id)
+                .map(event -> {
+                    event.setTitle(newEvent.getTitle());
+                    event.setType(newEvent.getType());
+                    event.setStartTime(newEvent.getStartTime());
+                    event.setEndTime(newEvent.getEndTime());
+                    event.setSubject(newEvent.getSubject());
+                    event.setLocation(newEvent.getLocation());
+                    event.setCategory(newEvent.getCategory());
+                    event.setDescription(newEvent.getDescription());
+                    return eventRepository.save(event);
+                }).orElseThrow(() -> new EventNotFoundException(id));
+    }
+
+
+    @Override
+    @DeleteMapping("/user/{id}")
+    public Event deleteEvent(@PathVariable Long id){
+        if(!eventRepository.existsById(id)){
+            throw new EventNotFoundException(id);
+        }
+        eventRepository.deleteById(id);
+        return eventRepository.getReferenceById(id);
     }
 }
