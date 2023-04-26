@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package org.example.model;
+package org.example.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,15 +10,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 
-/**
- *
- * @author ctkee
- */
 @Entity
-@Table(name = "event")
 public class Event {
     @Id
     @SequenceGenerator(
@@ -33,7 +29,10 @@ public class Event {
     private Long eventID;
     private String title;
     private String type;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime startTime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime endTime;
     private String subject;
     private String category;

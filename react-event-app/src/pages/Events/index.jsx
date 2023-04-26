@@ -2,17 +2,18 @@ import { useEffect, useState } from "react";
 import HeaderSection from "../../components/header";
 import Navigation from "../../components/navigation";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function Events() {
     const [events, setEvents] = useState([]);
+    const {id}=useParams()
 
     useEffect(() => {
         loadEvents();
     }, [])
 
     const loadEvents = async () => {
-        const result = await axios.get("http://localhost:8080/events");
+        const result = await axios.get("http://localhost:8081/events");
         console.log(result.data)
         setEvents(result.data);
     }
@@ -23,6 +24,11 @@ function Events() {
         e.preventDefault()
         navigate(`/${e.target.value}`)
     }
+
+    const deleteUser = async(id) => {
+        await axios.delete(`http://localhost:8081/events/${id}`)
+    }
+
     return (
         <div className='w-screen h-screen'>
                 <HeaderSection></HeaderSection>
@@ -39,7 +45,7 @@ function Events() {
                             <th className="bg-blue-100 border border-black text-left px-8 py-4">Location</th>
                             <th className="bg-blue-100 border border-black text-left px-8 py-4">Capacity</th>
                             <th className="bg-blue-100 border border-black text-left px-8 py-4">Description</th>
-                            <th className="bg-blue-100 border border-black text-center px-8 py-4">Change</th>
+                            <th className="bg-blue-100 border border-black text-center px-8 py-4">Action</th>
                         </tr>
                         <tbody>
                             {
@@ -57,7 +63,7 @@ function Events() {
                                         <td className="border px-8 py-4">{event.description}</td>
                                         <div className="flex flex-row justify-center items-center border px-8 py-4">
                                             <button className="px-6 py-1 mx-5 rounded-md shadow-md hover:bg-yellow-100">EDIT</button>
-                                            <button className="px-6 py-1 mx-5 rounded-md shadow-md bg-red-500 hover:bg-red-900">DELETE</button>
+                                            <button onClick={deleteUser(event.eventID)} className="px-6 py-1 mx-5 rounded-md shadow-md bg-red-500 hover:bg-red-900">DELETE</button>
                                         </div>
                                     </tr>
 

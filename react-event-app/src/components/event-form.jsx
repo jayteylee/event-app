@@ -17,7 +17,7 @@ function EventForm(props) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await axios.post("http://localhost:8080/events", {
+        await axios.post("http://localhost:8081/events", {
             title: title,
             type: type,
             startTime: startTime,
