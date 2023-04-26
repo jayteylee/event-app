@@ -1,19 +1,36 @@
 /*
-* Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-* Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
-*/
-package org.example.domain;
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package org.example.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
 
 import java.time.LocalDateTime;
 
+/**
+ *
+ * @author ctkee
+ */
 @Entity
+@Table(name = "event")
 public class Event {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int eventId;
+    @SequenceGenerator(
+        name = "student_sequence",
+        sequenceName = "student_sequence",
+        allocationSize = 1
+    )
+    @GeneratedValue(
+        strategy = GenerationType.SEQUENCE,
+        generator = "student_sequence"
+    )
+    private Long eventID;
     private String title;
     private String type;
     private LocalDateTime startTime;
@@ -24,12 +41,12 @@ public class Event {
     private int capacity;
     private String description;
 
-    public Event() {
+
+    public Event(){ 
     }
 
-    public Event(int eventId, String title, String type, LocalDateTime startTime, LocalDateTime endTime, String subject, String category, String location, int capacity, String description) {
-        this.eventId = eventId;
-        this.title = title;
+    public Event(Long eventId, String type, LocalDateTime startTime, LocalDateTime endTime, String subject, String category, String location, int capacity, String description){
+        this.eventID = eventId;
         this.type = type;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -40,12 +57,12 @@ public class Event {
         this.description = description;
     }
 
-    public int getEventId() {
-        return eventId;
+    public long getEventID() {
+        return eventID;
     }
 
-    public void setId(int eventId) {
-        this.eventId = eventId;
+    public void setEventID(long eventID) {
+        this.eventID = eventID;
     }
 
     public String getTitle() {
