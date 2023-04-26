@@ -4,14 +4,12 @@
  */
 package org.example.domain;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-/**
- *
- * @author ctkee
- */
+@Entity
 public class ResearchOpportunity {
 
     @Id

@@ -4,29 +4,25 @@
  */
 package org.example.domain;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-/**
- *
- * @author ctkee
- */
+@Entity
 public class Staff {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int staffId;
-    public String staffID;
     public String password;
     public String firstName; 
     public String lastName;
     public String email;
     public String phoneNumber;
 
-    public Staff(int staffId, String staffID, String password, String firstName, String lastName, String email, String phoneNumber) {
+    public Staff(int staffId, String password, String firstName, String lastName, String email, String phoneNumber) {
         this.staffId = staffId;
-        this.staffID = staffID;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -40,14 +36,6 @@ public class Staff {
 
     public void setStaffId(int staffId) {
         this.staffId = staffId;
-    }
-
-    public String getStaffID() {
-        return staffID;
-    }
-
-    public void setStaffID(String staffID) {
-        this.staffID = staffID;
     }
 
     public String getPassword() {
