@@ -1,0 +1,16 @@
+.DS_Store
+*.bin
+*.class
+
+# Temporary files
+*.tmp
+*.swp
+*~
+
+# Dependency directories
+/bin/
+/out/
+/build/
+/target/
+/lib/
+/.idea_modules/

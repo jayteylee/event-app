@@ -1,49 +1,20 @@
 package org.example.controller;
 
-import org.example.domain.Event;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-import org.example.service.EventService;
+import org.example.repository.EventRepository;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+@RestController
+public class EventController{
+    private final EventRepository eventRepository;
 
-@Controller
-public class EventController {
-
-    @Autowired
-    private EventService eventService;
-
-    @GetMapping("/")
-    public static String greeting(){
-        return "Welcome!";
+    public EventController(EventRepository eventRepository){
+        this.eventRepository = eventRepository;
     }
 
-    @GetMapping("/home")
-    public static String home(){
-        return "hello world!";
-    }
-
-    @PostMapping("/add/{id}")
-    public String add(@RequestBody Event event){
-        eventService.saveEvent(event);
-        return "New event added";
-    }
-
-    @GetMapping("/getAll")
-    public List<Event> getAllEvents(){
-        return eventService.getAllEvents();
-    }
-
-    @PostMapping("/update")
-    public String updateEvent(@RequestBody Event event){
-        eventService.updateEvent(event);
-        return "Event has been updated";
-    }
-
-    @PostMapping("/delete")
-    public String deleteEvent(@RequestBody Event event){
-        eventService.deleteEvent(event);
-        return "Event has been deleted";
+    @GetMapping("/events")
+    public ResponseEntity getAllEvents(){
+        return ResponseEntity.ok(this.eventRepository.findAll());
     }
 }
