@@ -2,11 +2,13 @@ package org.example.controller;
 
 import org.example.domain.Event;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.example.service.EventService;
 
 import java.util.List;
 
+@Controller
 public class EventController {
 
     @Autowired
