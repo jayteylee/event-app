@@ -45,7 +45,6 @@ public class EventServiceImpl implements EventService  {
     }
 
     @Override
-    @PutMapping("/user/{id}")
     public Event updateUser(@RequestBody Event newEvent, @PathVariable Long id) {
         return eventRepository.findById(id)
                 .map(event -> {
@@ -63,7 +62,6 @@ public class EventServiceImpl implements EventService  {
 
 
     @Override
-    @DeleteMapping("/user/{id}")
     public Event deleteEvent(@PathVariable Long id){
         if(!eventRepository.existsById(id)){
             throw new EventNotFoundException(id);

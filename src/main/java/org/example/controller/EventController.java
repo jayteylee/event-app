@@ -19,7 +19,7 @@ public class EventController{
         return ResponseEntity.ok(this.eventService.getAllEvents());
     }
 
-    @PostMapping("/events/{id}")
+    @GetMapping("/events/{id}")
     Event getEventById (@PathVariable("eventId") Long id){
         return eventService.getEventById(id);
     }
@@ -29,12 +29,12 @@ public class EventController{
         return eventService.createEvent(event);
     }
 
-    @PostMapping("/events")
+    @PutMapping("/events")
     Event updateEvent (@PathVariable("eventId") Long id){
         return eventService.updateEvent(id);
     }
 
-    @GetMapping("/events/delete/{id}")
+    @DeleteMapping("/events/delete/{id}")
     public ResponseEntity deleteEvent(@PathVariable("eventId") Long id){
         return ResponseEntity.ok(eventService.deleteEvent(id));
     }
