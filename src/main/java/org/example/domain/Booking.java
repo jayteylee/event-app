@@ -4,28 +4,27 @@
  */
 package org.example.domain;
 
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
 /**
  *
  * @author ctkee
  */
 public class Booking {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int bookingId;
+
     public String eventID;
+
     public String studentID;
 
-    public String getEventID() {
-        return eventID;
-    }
-
-    public void setEventID(String eventID) {
+    public Booking(int bookingId, String eventID, String studentID) {
+        this.bookingId = bookingId;
         this.eventID = eventID;
-    }
-
-    public String getStudentID() {
-        return studentID;
-    }
-
-    public void setStudentID(String studentID) {
         this.studentID = studentID;
     }
 }

@@ -4,14 +4,37 @@
  */
 package org.example.domain;
 
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
 /**
  *
  * @author ctkee
  */
 public class ResearchOpportunity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int opportunityId;
     public String title;
     public String type;
     public String subject;
+
+    public ResearchOpportunity(int opportunityId, String title, String type, String subject) {
+        this.opportunityId = opportunityId;
+        this.title = title;
+        this.type = type;
+        this.subject = subject;
+    }
+
+    public int getOpportunityId() {
+        return opportunityId;
+    }
+
+    public void setOpportunityId(int opportunityId) {
+        this.opportunityId = opportunityId;
+    }
 
     public String getTitle() {
         return title;

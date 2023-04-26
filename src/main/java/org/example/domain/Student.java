@@ -1,29 +1,33 @@
 package org.example.domain;
 
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
 import java.time.LocalDate;
 
 public class Student {
 
-    private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long studentId;
     private String name;
     private String email;
     private LocalDate dob;
 
-    public Student() {}
-
-    public Student(Long id, String name, String email, LocalDate dob) {
-        this.id = id;
-        this.email = email;
+    public Student(Long studentId, String name, String email, LocalDate dob) {
+        this.studentId = studentId;
         this.name = name;
+        this.email = email;
         this.dob = dob;
     }
 
-    public Long getId() {
-        return id;
+    public Long getStudentId() {
+        return studentId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setStudentId(Long studentId) {
+        this.studentId = studentId;
     }
 
     public String getName() {

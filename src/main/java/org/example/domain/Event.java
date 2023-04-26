@@ -13,7 +13,7 @@ public class Event {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int eventId;
     private String title;
     private String type;
     private LocalDateTime startTime;
@@ -27,8 +27,8 @@ public class Event {
     public Event() {
     }
 
-    public Event(int id, String title, String type, LocalDateTime startTime, LocalDateTime endTime, String subject, String category, String location, int capacity, String description) {
-        this.id = id;
+    public Event(int eventId, String title, String type, LocalDateTime startTime, LocalDateTime endTime, String subject, String category, String location, int capacity, String description) {
+        this.eventId = eventId;
         this.title = title;
         this.type = type;
         this.startTime = startTime;
@@ -40,12 +40,12 @@ public class Event {
         this.description = description;
     }
 
-    public int getId() {
-        return id;
+    public int getEventId() {
+        return eventId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int eventId) {
+        this.eventId = eventId;
     }
 
     public String getTitle() {

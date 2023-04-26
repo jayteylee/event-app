@@ -4,16 +4,35 @@
  */
 package org.example.domain;
 
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
 import java.time.LocalDateTime;
 
-/**
- *
- * @author ctkee
- */
 public class Liason {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int liasonId;
     public String title;
     public LocalDateTime startTime;
     public String location;
+
+    public Liason(int liasonId, String title, LocalDateTime startTime, String location) {
+        this.liasonId = liasonId;
+        this.title = title;
+        this.startTime = startTime;
+        this.location = location;
+    }
+
+    public int getLiasonId() {
+        return liasonId;
+    }
+
+    public void setLiasonId(int liasonId) {
+        this.liasonId = liasonId;
+    }
 
     public String getTitle() {
         return title;
