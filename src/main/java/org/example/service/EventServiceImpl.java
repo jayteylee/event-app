@@ -53,12 +53,12 @@ public class EventServiceImpl implements EventService  {
 
 
     @Override
-    public String deleteEvent(Long id){
+    public List<Event> deleteEvent(Long id){
         if(!eventRepository.existsById(id)){
             throw new EventNotFoundException(id);
         }
         // Event event = eventRepository.getReferenceById(id);
         eventRepository.deleteById(id);
-        return "User with " + id + " has been deleted successfully.";
+        return eventRepository.findAll();
     }
 }

@@ -25,8 +25,10 @@ function Events() {
         navigate(`/${e.target.value}`)
     }
 
-    const deleteUser = async(id) => {
+    const deleteEvent = async(id) => {
+        console.log(id)
         await axios.delete(`http://localhost:8081/events/${id}`)
+        loadEvents();
     }
 
     return (
@@ -63,7 +65,7 @@ function Events() {
                                         <td className="border px-8 py-4">{event.description}</td>
                                         <div className="flex flex-row justify-center items-center border px-8 py-4">
                                             <button className="px-6 py-1 mx-5 rounded-md shadow-md hover:bg-yellow-100">EDIT</button>
-                                            <button onClick={deleteUser(event.eventID)} className="px-6 py-1 mx-5 rounded-md shadow-md bg-red-500 hover:bg-red-900">DELETE</button>
+                                            <button onClick={() => deleteEvent(event.eventID)} className="px-6 py-1 mx-5 rounded-md shadow-md bg-red-500 hover:bg-red-900">DELETE</button>
                                         </div>
                                     </tr>
 

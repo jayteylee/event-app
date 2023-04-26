@@ -1,10 +1,6 @@
 package org.example.service;
 
 import org.example.domain.Event;
-import org.springframework.data.crossstore.ChangeSetPersister;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -18,5 +14,5 @@ public interface EventService {
 
     Event updateEvent(Event newEvent, Long id);
 
-    String deleteEvent(Long id);
+    List<Event> deleteEvent(Long id);
 }
