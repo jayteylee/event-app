@@ -4,7 +4,6 @@
  */
 package org.example.model;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,34 +21,31 @@ import java.time.LocalDateTime;
 @Table(name = "event")
 public class Event {
     @Id
-    @SequenceGenerator(name = "student_sequence", sequenceName = "student_sequence", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "student_sequence")
-    public String eventID;
-
-    @Column
-    public String title;
-    @Column
-    public String type;
-    @Column
-    public LocalDateTime startTime;
-    @Column
-    public LocalDateTime endTime;
-    @Column
-    public String subject;
-    @Column
-    public String category;
-    @Column
-    public String location;
-    @Column
-    public int capacity;
-    @Column
-    public String description;
+    @SequenceGenerator(
+        name = "student_sequence",
+        sequenceName = "student_sequence",
+        allocationSize = 1
+    )
+    @GeneratedValue(
+        strategy = GenerationType.SEQUENCE,
+        generator = "student_sequence"
+    )
+    private Long eventID;
+    private String title;
+    private String type;
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
+    private String subject;
+    private String category;
+    private String location;
+    private int capacity;
+    private String description;
 
 
     public Event(){ 
     }
 
-    public Event(String eventId, String type, LocalDateTime startTime, LocalDateTime endTime, String subject, String category, String location, int capacity, String description){
+    public Event(Long eventId, String type, LocalDateTime startTime, LocalDateTime endTime, String subject, String category, String location, int capacity, String description){
         this.eventID = eventId;
         this.type = type;
         this.startTime = startTime;
@@ -61,11 +57,11 @@ public class Event {
         this.description = description;
     }
 
-    public String getEventID() {
+    public long getEventID() {
         return eventID;
     }
 
-    public void setEventID(String eventID) {
+    public void setEventID(long eventID) {
         this.eventID = eventID;
     }
 
