@@ -59,7 +59,6 @@ public class EventServiceImpl implements EventService  {
         if(!eventRepository.existsById(id)){
             throw new EventNotFoundException(id);
         }
-        // Event event = eventRepository.getReferenceById(id);
         eventRepository.deleteById(id);
         return eventRepository.findAll();
     }

@@ -1,5 +1,4 @@
 package org.example.exception;
-/* Created by Arjun Gautam */
 
 public class EventNotFoundException extends RuntimeException{
     public EventNotFoundException(Long id){
