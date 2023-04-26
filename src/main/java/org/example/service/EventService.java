@@ -1,15 +1,18 @@
 package org.example.service;
 
 import org.example.domain.Event;
+
 import java.util.List;
 
 public interface EventService {
 
-    void saveEvent(Event event);
+    Event createEvent(Event event);
 
     List<Event> getAllEvents();
 
-    void updateEvent(Event event);
+    Event getEventById(Long id);
 
-    void deleteEvent(Event event);
+    Event updateEvent(Event newEvent, Long id);
+
+    List<Event> deleteEvent(Long id);
 }
