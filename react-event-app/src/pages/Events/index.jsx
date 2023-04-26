@@ -6,7 +6,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 function Events() {
     const [events, setEvents] = useState([]);
-    const {id}=useParams();
+    const { id } = useParams();
 
     useEffect(() => {
         loadEvents();
@@ -25,62 +25,82 @@ function Events() {
         navigate(`/${e.target.value}`)
     }
 
-    const deleteEvent = async(id) => {
+    const deleteEvent = async (id) => {
         await axios.delete(`http://localhost:8081/events/${id}`)
         loadEvents();
     }
 
-    const navigateEvent = async(id) => {
+    const navigateEvent = async (id) => {
         navigate(`/update-event/${id}`)
         loadEvents();
     }
 
     return (
         <div className='w-screen h-screen'>
-                <HeaderSection></HeaderSection>
-                <Navigation></Navigation>
-                    <table className="table-auto relative shadow-lg rounded-lg overflow-hidden">
+            <HeaderSection></HeaderSection>
+            <Navigation></Navigation>
+            <div className="m-9 relative overflow-x-auto shadow-md sm:rounded-lg">
+                <table class="w-full marker:text-sm text-left text-gray-500">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                         <tr>
-                            <th className="bg-blue-100 border border-black text-left px-8 py-4">Event ID</th>
-                            <th className="bg-blue-100 border border-black text-left px-8 py-4">Title</th>
-                            <th className="bg-blue-100 border border-black text-left px-8 py-4">Type</th>
-                            <th className="bg-blue-100 border border-black text-left px-8 py-4">Start Time</th>
-                            <th className="bg-blue-100 border border-black text-left px-8 py-4">End Time</th>
-                            <th className="bg-blue-100 border border-black text-left px-8 py-4">Subject</th>
-                            <th className="bg-blue-100 border border-black text-left px-8 py-4">Category</th>
-                            <th className="bg-blue-100 border border-black text-left px-8 py-4">Location</th>
-                            <th className="bg-blue-100 border border-black text-left px-8 py-4">Capacity</th>
-                            <th className="bg-blue-100 border border-black text-left px-8 py-4">Description</th>
-                            <th className="bg-blue-100 border border-black text-center px-8 py-4">Action</th>
+                            <th scope="col" class="text-center border px-6 py-3">
+                                Event ID
+                            </th>
+                            <th scope="col" class="text-center border px-6 py-3">
+                                Title
+                            </th>
+                            <th scope="col" class="text-center border px-6 py-3">
+                                Type
+                            </th>
+                            <th scope="col" class="text-center border px-9 py-3">
+                                Start Time
+                            </th>
+                            <th scope="col" class="text-center border px-12 py-3">
+                                End Time
+                            </th>
+                            <th scope="col" class="text-center border px-6 py-3">
+                                Subject
+                            </th>
+                            <th scope="col" class="text-center border px-6 py-3">
+                                Location
+                            </th>
+                            <th scope="col" class="text-center border px-6 py-3">
+                                Capacity
+                            </th>
+                            <th scope="col" class="text-center border px-6 py-3">
+                                Description
+                            </th>
+                            <th scope="col" class="text-center border px-6 py-3">
+                                Action
+                            </th>
                         </tr>
-                        <tbody>
-                            {
-                                events.map((event) => (
-                                    <tr>
-                                        <td className="border px-8 py-4">{event.eventID}</td>
-                                        <td className="border px-8 py-4">{event.title}</td>
-                                        <td className="border px-8 py-4">{event.type}</td>
-                                        <td className="border px-8 py-4">{event.startTime}</td>
-                                        <td className="border px-8 py-4">{event.endTime}</td>
-                                        <td className="border px-8 py-4">{event.subject}</td>
-                                        <td className="border px-8 py-4">{event.category}</td>
-                                        <td className="border px-8 py-4">{event.location}</td>
-                                        <td className="border px-8 py-4">{event.capacity}</td>
-                                        <td className="border px-8 py-4">{event.description}</td>
-                                        <div className="flex flex-row justify-center items-center border px-8 py-4">
-                                            <button onClick={() => navigateEvent(event.eventID)}className="px-6 py-1 mx-5 rounded-md shadow-md hover:bg-yellow-100">EDIT</button>
-                                            <button onClick={() => deleteEvent(event.eventID)} className="px-6 py-1 mx-5 rounded-md shadow-md bg-red-500 hover:bg-red-900">DELETE</button>
-                                        </div>
-                                    </tr>
-
-                                ))
-                            }
-
-                        </tbody>
-                    </table>
-                <div className="flex flex-row justify-center h-10 my-7">
-                    <button value="create-event" type="button" onClick={handleClick} className="justify-center w-2/12 border shadow-md font-poppins text-blue-900 mx-2">Create Event</button>
-                </div>
+                    </thead>
+                    <tbody>
+                        {
+                            events.map((event) => (
+                                <tr class="bg-white border-b">
+                                    <th scope="row" class="text-center border  px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{event.eventID}</th>
+                                    <td class="text-center border  px-6 py-4">{event.title}</td>
+                                    <td class="text-center border px-6 py-4">{event.type}</td>
+                                    <td class="text-center border px-6 py-4">{event.startTime}</td>
+                                    <td class="text-center border px-6 py-4">{event.endTime}</td>
+                                    <td class="text-center border px-6 py-4">{event.subject}</td>
+                                    <td class="text-center border px-6 py-4">{event.location}</td>
+                                    <td class="text-center border px-6 py-4">{event.capacity}</td>
+                                    <td class="text-center border px-6 py-4">{event.description}</td>
+                                    <td class="text-center border px-6 py-4">
+                                        <a onClick={() => navigateEvent(event.eventID)} className="transition-all mx-2 font-medium text-blue-600 dark:text-blue-500 hover:underline hover:cursor-pointer">Edit</a>
+                                        <a onClick={() => deleteEvent(event.eventID)} className="transition-all mx-2 font-medium text-red-600 dark:text-red-600 hover:underline hover:cursor-pointer">Delete</a>
+                                    </td>
+                                </tr>
+                            ))
+                        }
+                    </tbody>
+                </table>
             </div>
+            <div className="flex flex-row justify-center h-10 my-7">
+                <button value="create-event" type="button" onClick={handleClick} className="hover:bg-slate-100 transition-all rounded-md justify-center w-2/12 border shadow-md font-poppins text-black font-semibold mx-2">Create Event</button>
+            </div>
+        </div>
     )
 } export default Events;

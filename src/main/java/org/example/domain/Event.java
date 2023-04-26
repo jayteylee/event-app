@@ -34,7 +34,6 @@ public class Event {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime endTime;
     private String subject;
-    private String category;
     private String location;
     private int capacity;
     private String description;
@@ -43,13 +42,12 @@ public class Event {
     public Event(){ 
     }
 
-    public Event(Long eventId, String type, LocalDateTime startTime, LocalDateTime endTime, String subject, String category, String location, int capacity, String description){
+    public Event(Long eventId, String type, LocalDateTime startTime, LocalDateTime endTime, String subject, String location, int capacity, String description){
         this.eventID = eventId;
         this.type = type;
         this.startTime = startTime;
         this.endTime = endTime;
         this.subject = subject;
-        this.category = category;
         this.location = location;
         this.capacity = capacity;
         this.description = description;
@@ -101,14 +99,6 @@ public class Event {
 
     public void setSubject(String subject) {
         this.subject = subject;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
     }
 
     public String getLocation() {
