@@ -15,14 +15,16 @@ public class Staff {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int staffId;
+    private String username;
     public String password;
     public String firstName; 
     public String lastName;
     public String email;
     public String phoneNumber;
 
-    public Staff(int staffId, String password, String firstName, String lastName, String email, String phoneNumber) {
+    public Staff(int staffId, String username, String password, String firstName, String lastName, String email, String phoneNumber) {
         this.staffId = staffId;
+        this.username = username;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -36,6 +38,14 @@ public class Staff {
 
     public void setStaffId(int staffId) {
         this.staffId = staffId;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
