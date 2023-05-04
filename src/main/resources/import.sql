@@ -1,7 +1,6 @@
 INSERT INTO Event (event_id, title, type, start_time, end_time, location, capacity, description) VALUES (1, 'Information Science Career Fair', 'Career Fair', '2023-06-01 09:00:00', '2023-06-01 16:00:00', 'Owheo Building, Dunedin', 100, 'Come meet with potential employers in the Information Science field!');
 INSERT INTO Event (event_id, title, type, start_time, end_time, location, capacity, description) VALUES (2, 'Introduction to Python Programming', 'Workshop', '2023-05-15 10:00:00', '2023-05-15 12:00:00', 'Saint David Theatre, Dunedin', 30, 'This workshop will teach you the basics of programming with Python.');
 
-
 --INSERT INTO Student (studentID, password, firstName, lastName, email, phoneNumber, DOB, degree, major, iwi)
 --VALUES ('M0123456', 'password', 'Hemi', 'Smith', 'hemi.smith@example.com', '0211234567', '1998-07-15', 'Bachelor of Information Science', 'Software Development', 'Ngati Porou');
 --
