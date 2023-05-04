@@ -1,7 +1,7 @@
-package org.example.service;
+package org.example.service.event;
 
 import org.example.domain.Event;
-import org.example.exception.EventNotFoundException;
+import org.example.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.example.repository.EventRepository;
@@ -27,7 +27,7 @@ public class EventServiceImpl implements EventService  {
     @Override
     public Event getEventById(Long id) {
         return eventRepository.findById(id)
-                .orElseThrow(() -> new EventNotFoundException(id));
+                .orElseThrow(() -> new ObjectNotFoundException(id));
     }
 
     @Override
@@ -44,14 +44,14 @@ public class EventServiceImpl implements EventService  {
                     event.setCapacity(newEvent.getCapacity());
                     event.setDescription(newEvent.getDescription());
                     return eventRepository.save(event);
-                }).orElseThrow(() -> new EventNotFoundException(id));
+                }).orElseThrow(() -> new ObjectNotFoundException(id));
     }
 
 
     @Override
     public List<Event> deleteEvent(Long id){
         if(!eventRepository.existsById(id)){
-            throw new EventNotFoundException(id);
+            throw new ObjectNotFoundException(id);
         }
         eventRepository.deleteById(id);
         return eventRepository.findAll();
