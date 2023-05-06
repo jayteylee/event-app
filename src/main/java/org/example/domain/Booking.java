@@ -20,6 +20,9 @@ public class Booking {
 
     public String studentID;
 
+    public Booking(){
+    }
+
     public Booking(int bookingId, String eventID, String studentID) {
         this.bookingId = bookingId;
         this.eventID = eventID;

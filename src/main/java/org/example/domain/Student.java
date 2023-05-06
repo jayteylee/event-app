@@ -20,6 +20,8 @@ public class Student {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dob;
 
+    public Student(){}
+    
     public Student(Long studentId, String name, String email, String password, LocalDate dob) {
         this.studentId = studentId;
         this.name = name;
