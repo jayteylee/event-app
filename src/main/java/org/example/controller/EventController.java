@@ -1,7 +1,7 @@
 package org.example.controller;
 
 import org.example.domain.Event;
-import org.example.service.EventService;
+import org.example.service.event.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
