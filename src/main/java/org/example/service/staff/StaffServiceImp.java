@@ -1,14 +1,15 @@
-package org.example.service;
+package org.example.service.staff;
 
 import org.example.domain.Staff;
-import org.example.repository.EventRepository;
 import org.example.repository.StaffRepository;
+import org.example.service.staff.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-public class StaffServiceImp implements StaffService{
-
+@Service
+public class StaffServiceImp implements StaffService {
 
     @Autowired
     private StaffRepository staffRepository;

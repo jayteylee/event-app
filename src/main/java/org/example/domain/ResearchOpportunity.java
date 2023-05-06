@@ -19,6 +19,9 @@ public class ResearchOpportunity {
     public String type;
     public String subject;
 
+    public ResearchOpportunity(){ 
+    }
+
     public ResearchOpportunity(int opportunityId, String title, String type, String subject) {
         this.opportunityId = opportunityId;
         this.title = title;

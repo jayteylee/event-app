@@ -1,4 +1,4 @@
-package org.example.service;
+package org.example.service.event;
 
 import org.example.domain.Event;
 
