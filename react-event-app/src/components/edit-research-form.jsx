@@ -11,7 +11,7 @@ function EditResearchForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await axios.post("http://localhost:8081/research", {
+        await axios.put(`http://localhost:8081/research/${id}`, {
             title: title,
             type: type,
             subject: subject,
@@ -55,7 +55,7 @@ function EditResearchForm() {
                             </div>
                         </div>
                         <div className="flex flex-row justify-center">
-                            <button type="submit" className="transition-all mx-5 px-4 rounded-md border shadow-md border-blue-500 text-blue-500 hover:text-white hover:bg-blue-500">Create Scholarship</button>
+                            <button type="submit" className="transition-all mx-5 px-4 rounded-md border shadow-md border-blue-500 text-blue-500 hover:text-white hover:bg-blue-500">Update</button>
                             <button onClick={onCancelClick} className="transition-all backdrop:mx-5 px-4 rounded-md border shadow-md border-red-500 hover:bg-red-500 hover:text-white text-red-500">Cancel</button>
                         </div>
                     </form>

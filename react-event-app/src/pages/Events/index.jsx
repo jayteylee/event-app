@@ -10,7 +10,7 @@ function Events() {
 
     useEffect(() => {
         loadEvents();
-    }, [])
+    }, []);
 
     const loadEvents = async () => {
         const result = await axios.get("http://localhost:8081/events");
@@ -38,6 +38,7 @@ function Events() {
         <div className='w-screen h-screen'>
             <HeaderSection></HeaderSection>
             <Navigation></Navigation>
+            <h2 className="text-3xl font-bold text-center mt-8">Events</h2>
             <div className="m-9 relative overflow-x-auto shadow-md sm:rounded-lg">
                 <table class="w-full marker:text-sm text-left text-gray-500">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50">

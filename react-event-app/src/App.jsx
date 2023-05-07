@@ -11,6 +11,9 @@ import CreateScholarship from './pages/Create-Scholarship';
 import UpdateScholarship from './pages/Update-Scholarship';
 import CreateResearch from './pages/Create-Research';
 import UpdateResearch from './pages/Update-Research';
+import Liasons from './pages/Liasons';
+import CreateLiason from './pages/Create-Liason';
+import UpdateLiason from './pages/Update-Liason';
 
 export default function App() {
   return (
@@ -27,6 +30,9 @@ export default function App() {
         <Route path="research" element={<Research />} />
         <Route path="create-research" element={<CreateResearch />} />
         <Route path="update-research/:id" element={<UpdateResearch />} />
+        <Route path="liasons" element={<Liasons />} />
+        <Route path="create-liason" element={<CreateLiason />} />
+        <Route path="update-liason/:id" element={<UpdateLiason />} />
       </Routes>
     </div>
   );

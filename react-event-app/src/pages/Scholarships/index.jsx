@@ -40,6 +40,7 @@ function Scholarships() {
                 <HeaderSection></HeaderSection>
                 <div className='h-full w-full flex flex-col'>
                     <Navigation></Navigation>
+                    <h2 className="text-3xl font-bold text-center mt-8">Scholarships</h2>
                     <div className="m-9 relative overflow-x-auto shadow-md sm:rounded-lg">
                         <table class="w-full marker:text-sm text-left text-gray-500">
                             <thead class="text-xs text-gray-700 uppercase bg-gray-50">
