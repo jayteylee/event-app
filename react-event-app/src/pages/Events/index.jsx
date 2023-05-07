@@ -10,7 +10,7 @@ function Events() {
 
     useEffect(() => {
         loadEvents();
-    }, [])
+    }, []);
 
     const loadEvents = async () => {
         const result = await axios.get("http://localhost:8081/events");
@@ -30,15 +30,15 @@ function Events() {
         loadEvents();
     }
 
-    const navigateEvent = async (id) => {
+    const editEvent = async (id) => {
         navigate(`/update-event/${id}`)
-        loadEvents();
     }
 
     return (
         <div className='w-screen h-screen'>
             <HeaderSection></HeaderSection>
             <Navigation></Navigation>
+            <h2 className="text-3xl font-bold text-center mt-8">Events</h2>
             <div className="m-9 relative overflow-x-auto shadow-md sm:rounded-lg">
                 <table class="w-full marker:text-sm text-left text-gray-500">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50">
@@ -57,9 +57,6 @@ function Events() {
                             </th>
                             <th scope="col" class="text-center border px-12 py-3">
                                 End Time
-                            </th>
-                            <th scope="col" class="text-center border px-6 py-3">
-                                Subject
                             </th>
                             <th scope="col" class="text-center border px-6 py-3">
                                 Location
@@ -84,12 +81,11 @@ function Events() {
                                     <td class="text-center border px-6 py-4">{event.type}</td>
                                     <td class="text-center border px-6 py-4">{event.startTime}</td>
                                     <td class="text-center border px-6 py-4">{event.endTime}</td>
-                                    <td class="text-center border px-6 py-4">{event.subject}</td>
                                     <td class="text-center border px-6 py-4">{event.location}</td>
                                     <td class="text-center border px-6 py-4">{event.capacity}</td>
                                     <td class="text-center border px-6 py-4">{event.description}</td>
                                     <td class="text-center border px-6 py-4">
-                                        <a onClick={() => navigateEvent(event.eventID)} className="transition-all mx-2 font-medium text-blue-600 dark:text-blue-500 hover:underline hover:cursor-pointer">Edit</a>
+                                        <a onClick={() => editEvent(event.eventID)} className="transition-all mx-2 font-medium text-blue-600 dark:text-blue-500 hover:underline hover:cursor-pointer">Edit</a>
                                         <a onClick={() => deleteEvent(event.eventID)} className="transition-all mx-2 font-medium text-red-600 dark:text-red-600 hover:underline hover:cursor-pointer">Delete</a>
                                     </td>
                                 </tr>

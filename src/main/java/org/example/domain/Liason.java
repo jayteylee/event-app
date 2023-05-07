@@ -21,6 +21,9 @@ public class Liason {
     public LocalDateTime startTime;
     public String location;
 
+    public Liason(){
+    }
+
     public Liason(int liasonId, String title, LocalDateTime startTime, String location) {
         this.liasonId = liasonId;
         this.title = title;

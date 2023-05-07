@@ -8,7 +8,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.SequenceGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
@@ -16,16 +15,8 @@ import java.time.LocalDateTime;
 @Entity
 public class Event {
     @Id
-    @SequenceGenerator(
-        name = "student_sequence",
-        sequenceName = "student_sequence",
-        allocationSize = 1
-    )
-    @GeneratedValue(
-        strategy = GenerationType.SEQUENCE,
-        generator = "student_sequence"
-    )
-    private Long eventID;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long eventId;
     private String title;
     private String type;
 
@@ -33,32 +24,29 @@ public class Event {
     private LocalDateTime startTime;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime endTime;
-    private String subject;
     private String location;
     private int capacity;
     private String description;
-
 
     public Event(){ 
     }
 
     public Event(Long eventId, String type, LocalDateTime startTime, LocalDateTime endTime, String subject, String location, int capacity, String description){
-        this.eventID = eventId;
+        this.eventId = eventId;
         this.type = type;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.subject = subject;
         this.location = location;
         this.capacity = capacity;
         this.description = description;
     }
 
     public long getEventID() {
-        return eventID;
+        return eventId;
     }
 
     public void setEventID(long eventID) {
-        this.eventID = eventID;
+        this.eventId = eventID;
     }
 
     public String getTitle() {
@@ -91,14 +79,6 @@ public class Event {
 
     public void setEndTime(LocalDateTime endTime) {
         this.endTime = endTime;
-    }
-
-    public String getSubject() {
-        return subject;
-    }
-
-    public void setSubject(String subject) {
-        this.subject = subject;
     }
 
     public String getLocation() {

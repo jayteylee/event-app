@@ -16,6 +16,7 @@ function Navigation(){
         <button value="events" type="button" onClick={handleClick} className="font-poppins text-blue-900 mx-2">Events</button>
         <button value="scholarships" type="button" onClick={handleClick} className="font-poppins text-blue-900 mx-2">Scholarships</button>
         <button value="research" type="button" onClick={handleClick} className="font-poppins text-blue-900 mx-2">Research</button>
+        <button value="liasons" type="button" onClick={handleClick} className="font-poppins text-blue-900 mx-2">Liasons</button>
     </div>
     )
 

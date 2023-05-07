@@ -1,6 +1,7 @@
-package org.example.service;
+package org.example.service.staff;
 
 import org.example.domain.Staff;
+
 
 public interface StaffService {
 

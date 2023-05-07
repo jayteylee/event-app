@@ -22,6 +22,8 @@ public class Staff {
     public String email;
     public String phoneNumber;
 
+    public Staff(){}
+
     public Staff(int staffId, String username, String password, String firstName, String lastName, String email, String phoneNumber) {
         this.staffId = staffId;
         this.username = username;
