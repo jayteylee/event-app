@@ -30,9 +30,8 @@ function Events() {
         loadEvents();
     }
 
-    const navigateEvent = async (id) => {
+    const editEvent = async (id) => {
         navigate(`/update-event/${id}`)
-        loadEvents();
     }
 
     return (
@@ -59,9 +58,6 @@ function Events() {
                                 End Time
                             </th>
                             <th scope="col" class="text-center border px-6 py-3">
-                                Subject
-                            </th>
-                            <th scope="col" class="text-center border px-6 py-3">
                                 Location
                             </th>
                             <th scope="col" class="text-center border px-6 py-3">
@@ -84,12 +80,11 @@ function Events() {
                                     <td class="text-center border px-6 py-4">{event.type}</td>
                                     <td class="text-center border px-6 py-4">{event.startTime}</td>
                                     <td class="text-center border px-6 py-4">{event.endTime}</td>
-                                    <td class="text-center border px-6 py-4">{event.subject}</td>
                                     <td class="text-center border px-6 py-4">{event.location}</td>
                                     <td class="text-center border px-6 py-4">{event.capacity}</td>
                                     <td class="text-center border px-6 py-4">{event.description}</td>
                                     <td class="text-center border px-6 py-4">
-                                        <a onClick={() => navigateEvent(event.eventID)} className="transition-all mx-2 font-medium text-blue-600 dark:text-blue-500 hover:underline hover:cursor-pointer">Edit</a>
+                                        <a onClick={() => editEvent(event.eventID)} className="transition-all mx-2 font-medium text-blue-600 dark:text-blue-500 hover:underline hover:cursor-pointer">Edit</a>
                                         <a onClick={() => deleteEvent(event.eventID)} className="transition-all mx-2 font-medium text-red-600 dark:text-red-600 hover:underline hover:cursor-pointer">Delete</a>
                                     </td>
                                 </tr>

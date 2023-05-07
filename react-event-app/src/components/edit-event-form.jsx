@@ -5,7 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 function EditEventForm(props) {
     const navigate = useNavigate();
 
-    const {id} = useParams()
+    const {id} = useParams();
 
     const [title, setTitle] = useState('');
     const [type, setType] = useState('');
@@ -32,10 +32,10 @@ function EditEventForm(props) {
     };
 
     useEffect(() => {
-        loadUser();
+        loadEvent();
     }, []);
 
-    const loadUser = async () => {
+    const loadEvent = async () => {
         const result = await axios.get(`http://localhost:8081/events/${id}`)
         setTitle(result.data.title);
         setType(result.data.type);
