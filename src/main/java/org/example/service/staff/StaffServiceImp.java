@@ -15,8 +15,8 @@ public class StaffServiceImp implements StaffService {
     private StaffRepository staffRepository;
 
     @Override
-    public Boolean authenticate(String username, String password) {
-        Optional<Staff> staffOptional = staffRepository.findByUsernameAndPassword(username, password);
+    public Boolean authenticate(String email, String password) {
+        Optional<Staff> staffOptional = staffRepository.findByEmailAndPassword(email, password);
 
         return staffOptional.isPresent();
     }

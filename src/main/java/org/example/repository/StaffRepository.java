@@ -9,5 +9,5 @@ import java.util.Optional;
 
 @Repository
 public interface StaffRepository extends JpaRepository<Staff, Long> {
-    Optional<Staff> findByUsernameAndPassword(String username, String password);
+    Optional<Staff> findByEmailAndPassword(String email, String password);
 }

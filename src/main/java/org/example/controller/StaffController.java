@@ -19,8 +19,8 @@ public class StaffController{
         this.staffService = staffService;
     }
 
-    @GetMapping("/login/{username}/{password}")
-    Boolean authenticate(@PathVariable("username") String username, @PathVariable("password") String password) {
-        return staffService.authenticate(username, password);
+    @GetMapping("/login/{email}/{password}")
+    Boolean authenticate(@PathVariable("email") String email, @PathVariable("password") String password) {
+        return staffService.authenticate(email, password);
     }
 }
