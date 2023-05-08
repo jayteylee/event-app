@@ -27,6 +27,10 @@ function Scholarships() {
         loadScholarship();
     }
 
+    const viewScholarship = async (id) => {
+        navigate(`/view-scholarship/${id}`)
+    }
+
     const navigate = useNavigate();
 
     const handleClick = (e) => {
@@ -54,13 +58,7 @@ function Scholarships() {
                                         <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                                             <tr>
                                                 <th scope="col" class="text-center border px-6 py-3">
-                                                    Scholarship ID
-                                                </th>
-                                                <th scope="col" class="text-center border px-6 py-3">
                                                     Name
-                                                </th>
-                                                <th scope="col" class="text-center border px-6 py-3">
-                                                    Type
                                                 </th>
                                                 <th scope="col" class="text-center border px-9 py-3">
                                                     Subject
@@ -77,12 +75,11 @@ function Scholarships() {
                                             {
                                                 scholarship.map((scholarship) => (
                                                     <tr class="bg-white border-b">
-                                                        <th scope="row" class="text-center border  px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{scholarship.scholarshipId}</th>
                                                         <td class="text-center border  px-6 py-4">{scholarship.name}</td>
-                                                        <td class="text-center border px-6 py-4">{scholarship.type}</td>
                                                         <td class="text-center border px-6 py-4">{scholarship.subject}</td>
                                                         <td class="text-center border px-6 py-4">{scholarship.numAvailable}</td>
                                                         <td class="text-center border px-6 py-4">
+                                                        <a onClick={() => viewScholarship(scholarship.scholarshipId)} className="transition-all mx-2 font-medium text-yellow-400 hover:underline hover:cursor-pointer">View</a>
                                                             <a onClick={() => editScholarship(scholarship.scholarshipId)} className="transition-all mx-2 font-medium text-blue-600 dark:text-blue-500 hover:underline hover:cursor-pointer">Edit</a>
                                                             <a onClick={() => deleteScholarship(scholarship.scholarshipId)} className="transition-all mx-2 font-medium text-red-600 dark:text-red-600 hover:underline hover:cursor-pointer">Delete</a>
                                                         </td>

@@ -34,6 +34,10 @@ function Events() {
         navigate(`/update-event/${id}`)
     }
 
+    const viewEvent = async (id) => {
+        navigate(`/view-event/${id}`)
+    }
+
     return (
         <div className='w-screen h-screen'>
             <HeaderSection></HeaderSection>
@@ -52,13 +56,7 @@ function Events() {
                             <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                                 <tr>
                                     <th scope="col" class="text-center border px-6 py-3">
-                                        Event ID
-                                    </th>
-                                    <th scope="col" class="text-center border px-6 py-3">
                                         Title
-                                    </th>
-                                    <th scope="col" class="text-center border px-6 py-3">
-                                        Type
                                     </th>
                                     <th scope="col" class="text-center border px-9 py-3">
                                         Start Time
@@ -70,12 +68,6 @@ function Events() {
                                         Location
                                     </th>
                                     <th scope="col" class="text-center border px-6 py-3">
-                                        Capacity
-                                    </th>
-                                    <th scope="col" class="text-center border px-6 py-3">
-                                        Description
-                                    </th>
-                                    <th scope="col" class="text-center border px-6 py-3">
                                         Action
                                     </th>
                                 </tr>
@@ -85,15 +77,12 @@ function Events() {
                                 {
                                     events.map((event) => (
                                         <tr class="bg-white border-b">
-                                            <th scope="row" class="text-center border  px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{event.eventID}</th>
                                             <td class="text-center border  px-6 py-4">{event.title}</td>
-                                            <td class="text-center border px-6 py-4">{event.type}</td>
                                             <td class="text-center border px-6 py-4">{event.startTime}</td>
                                             <td class="text-center border px-6 py-4">{event.endTime}</td>
                                             <td class="text-center border px-6 py-4">{event.location}</td>
-                                            <td class="text-center border px-6 py-4">{event.capacity}</td>
-                                            <td class="text-center border px-6 py-4">{event.description}</td>
                                             <td class="text-center border px-6 py-4">
+                                                <a onClick={() => viewEvent(event.eventID)} className="transition-all mx-2 font-medium text-yellow-400 hover:underline hover:cursor-pointer">View</a>
                                                 <a onClick={() => editEvent(event.eventID)} className="transition-all mx-2 font-medium text-blue-600 dark:text-blue-500 hover:underline hover:cursor-pointer">Edit</a>
                                                 <a onClick={() => deleteEvent(event.eventID)} className="transition-all mx-2 font-medium text-red-600 dark:text-red-600 hover:underline hover:cursor-pointer">Delete</a>
                                             </td>

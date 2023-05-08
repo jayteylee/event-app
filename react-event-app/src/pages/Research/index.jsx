@@ -27,6 +27,10 @@ function Research() {
         await axios.delete(`http://localhost:8081/research/${id}`)
         loadResearch();
     }
+    const viewResearch = async (id) => {
+        navigate(`/view-research/${id}`)
+    }
+
 
 
     const handleClick = (e) => {
@@ -54,13 +58,7 @@ function Research() {
                                 <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                                     <tr>
                                         <th scope="col" class="text-center border px-6 py-3">
-                                            Opportunity ID
-                                        </th>
-                                        <th scope="col" class="text-center border px-6 py-3">
                                             Title
-                                        </th>
-                                        <th scope="col" class="text-center border px-6 py-3">
-                                            Type
                                         </th>
                                         <th scope="col" class="text-center border px-9 py-3">
                                             Subject
@@ -74,11 +72,10 @@ function Research() {
                                     {
                                         research.map((research) => (
                                             <tr class="bg-white border-b">
-                                                <th scope="row" class="text-center border  px-6 py-4 font-medium text-gray-900 whitespace-nowrap">{research.opportunityId}</th>
                                                 <td class="text-center border  px-6 py-4">{research.title}</td>
-                                                <td class="text-center border px-6 py-4">{research.type}</td>
                                                 <td class="text-center border px-6 py-4">{research.subject}</td>
                                                 <td class="text-center border px-6 py-4">
+                                                <a onClick={() => viewResearch(research.opportunityId)} className="transition-all mx-2 font-medium text-yellow-400 hover:underline hover:cursor-pointer">View</a>
                                                     <a onClick={() => editResearch(research.opportunityId)} className="transition-all mx-2 font-medium text-blue-600 dark:text-blue-500 hover:underline hover:cursor-pointer">Edit</a>
                                                     <a onClick={() => deleteResearch(research.opportunityId)} className="transition-all mx-2 font-medium text-red-600 dark:text-red-600 hover:underline hover:cursor-pointer">Delete</a>
                                                 </td>
