@@ -11,18 +11,17 @@ function Login() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if(await axios.get(`http://localhost:8081/login/${email}/${password}`, {
-        })){
-            navigate('/');
+        if(await axios.get(`http://localhost:8081/login/${email}/${password}`)){
+            navigate('/events');
         }else{
-
+            navigate('/login');
         }
     };
     return (
         <div className='w-screen h-screen'>
             <div className='relative flex flex-col h-full'>
                 <HeaderSection></HeaderSection>
-                    <div class="flex flex-col items-center justify-center w-3/4 px-8 py-8 mx-auto">
+                    <div class="flex flex-col items-center justify-center w-3/4 px-8 py-32 mx-auto">
                         <div class="w-full rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 bg-gray-50">
                             <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                                 <h1 class="text-xl font-bold leading-tight tracking-tight md:text-2xl ">

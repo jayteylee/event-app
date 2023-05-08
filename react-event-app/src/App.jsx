@@ -19,7 +19,7 @@ export default function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Login />} />
         <Route path="login" element={<Login />} />
         <Route path="events" element={<Events />} />
         <Route path="create-event" element={<CreateEvent />} />
