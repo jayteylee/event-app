@@ -5,6 +5,7 @@ import uniLogo from "../images/uni-logo.png"
 
 function HeaderSection() {
     const navigate = useNavigate();
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
     const handleClick = (e) => {
         e.preventDefault()
         navigate('/')
@@ -14,9 +15,10 @@ function HeaderSection() {
         e.preventDefault()
         localStorage.removeItem('isLoggedIn');
         localStorage.removeItem('user');
+        localStorage.removeItem('staff');
+        localStorage.removeItem('auth');
         navigate('/login');
     }
-    const isLoggedIn = localStorage.getItem('isLoggedIn');
     return (
         <div>
             <div className='flex flex-col'>
@@ -34,7 +36,7 @@ function HeaderSection() {
                         </div>
                         <div className="flex flex-col justify-center">
                             {isLoggedIn && (
-                                <button value="login" type="button" onClick={handleLogout} className="font-poppins text-blue-900 mx-2">
+                                <button value="login" type="button" onClick={handleLogout} className="font-poppins text-white mx-2">
                                     Logout
                                 </button>
                             )}

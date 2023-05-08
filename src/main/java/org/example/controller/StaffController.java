@@ -1,7 +1,7 @@
 package org.example.controller;
 
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.security.Keys;
+// import io.jsonwebtoken.Jwts;
+// import io.jsonwebtoken.security.Keys;
 import org.example.domain.Event;
 import org.example.service.event.EventService;
 import org.example.service.staff.StaffService;
@@ -23,29 +23,29 @@ public class StaffController{
         this.staffService = staffService;
     }
 
-//    @GetMapping("/login/{email}/{password}")
-//    Boolean authenticate(@PathVariable("email") String email, @PathVariable("password") String password) {
-//        return staffService.authenticate(email, password);
-//    }
+   @GetMapping("/login/{email}/{password}")
+   Boolean authenticate(@PathVariable("email") String email, @PathVariable("password") String password) {
+       return staffService.authenticate(email, password);
+   }
 
-    @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
-        // Validate the username and password against your database or authentication provider
-        boolean isValidCredentials = staffService.authenticate(loginRequest.getUsername(), loginRequest.getPassword());
+    // @PostMapping("/login")
+    // public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
+    //     // Validate the username and password against your database or authentication provider
+    //     boolean isValidCredentials = staffService.authenticate(loginRequest.getUsername(), loginRequest.getPassword());
 
-        if (isValidCredentials) {
-            // Create a JWT using the user's username as the subject and a secret key
-            String jwt = Jwts.builder()
-                    .setSubject(loginRequest.getUsername())
-                    .signWith(Keys.hmacShaKeyFor("my-secret-key".getBytes()))
-                    .compact();
+    //     if (isValidCredentials) {
+    //         // Create a JWT using the user's username as the subject and a secret key
+    //         String jwt = Jwts.builder()
+    //                 .setSubject(loginRequest.getUsername())
+    //                 .signWith(Keys.hmacShaKeyFor("my-secret-key".getBytes()))
+    //                 .compact();
 
-            // Return the JWT in the response body
-            return ResponseEntity.ok(jwt);
-        } else {
-            // Return an unauthorized status code if the credentials are invalid
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-        }
-    }
+    //         // Return the JWT in the response body
+    //         return ResponseEntity.ok(jwt);
+    //     } else {
+    //         // Return an unauthorized status code if the credentials are invalid
+    //         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+    //     }
+    // }
 }
 

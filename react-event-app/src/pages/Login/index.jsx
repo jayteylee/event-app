@@ -12,16 +12,19 @@ function Login() {
 
     const handleLogin = async (e) => {
         e.preventDefault();
-        const response = await axios.post("http://localhost:8081/login", {
-            email: email,
-            password: password,
-        });
+        const response = await axios.get(`http://localhost:8081/login/${email}/${password}`);
         // Handle server response
         if (response.data === true) {
             // If authenticated, set state to true and store user details
             setAuthenticated(true);
             localStorage.setItem('user', JSON.stringify({ email }));
+            if(email.includes('@staff')){
+                localStorage.setItem('staff', true);
+            }else if(email.includes('@student')){
+                localStorage.setItem('staff', false);
+            }
             localStorage.setItem('isLoggedIn', true);
+
             navigate('/events');
         } else {
             // If not authenticated, show error message
