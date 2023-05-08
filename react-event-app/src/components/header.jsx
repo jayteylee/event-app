@@ -9,6 +9,14 @@ function HeaderSection() {
         e.preventDefault()
         navigate('/')
     }
+
+    const handleLogout = (e) => {
+        e.preventDefault()
+        localStorage.removeItem('isLoggedIn');
+        localStorage.removeItem('user');
+        navigate('/login');
+    }
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
     return (
         <div>
             <div className='flex flex-col'>
@@ -23,6 +31,13 @@ function HeaderSection() {
                         </div>
                         <div className='flex flex-col justify-center'>
                             <h1 className='text-2xl text-center justify-center text-white mx-10 font-poppins'></h1>
+                        </div>
+                        <div className="flex flex-col justify-center">
+                            {isLoggedIn && (
+                                <button value="login" type="button" onClick={handleLogout} className="font-poppins text-blue-900 mx-2">
+                                    Logout
+                                </button>
+                            )}
                         </div>
                     </div>
                 </header>
