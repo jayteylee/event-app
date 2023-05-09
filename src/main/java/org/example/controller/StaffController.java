@@ -1,6 +1,7 @@
 package org.example.controller;
 
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import org.example.login.LoginRequest;
 import org.example.service.staff.StaffService;
@@ -28,15 +29,13 @@ public class StaffController{
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
         // Validate the username and password against your database or authentication provider
-        boolean isValidCredentials = staffService.authenticate(loginRequest.getUsername(), loginRequest.getPassword());
-
+        boolean isValidCredentials = staffService.authenticate(loginRequest.getEmail(), loginRequest.getPassword());
         if (isValidCredentials) {
             // Create a JWT using the user's username as the subject and a secret key
             String jwt = Jwts.builder()
-                    .setSubject(loginRequest.getUsername())
-                    .signWith(Keys.hmacShaKeyFor("my-secret-key".getBytes()))
+                    .setSubject(loginRequest.getEmail())
+                    .signWith(Keys.secretKeyFor(SignatureAlgorithm.HS256))
                     .compact();
-
             // Return the JWT in the response body
             return ResponseEntity.ok(jwt);
         } else {

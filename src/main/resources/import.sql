@@ -29,7 +29,7 @@ INSERT INTO Scholarship (scholarship_id, name, num_available, subject, type) VAL
 INSERT INTO Research_opportunity (opportunity_id, title, type, subject) VALUES (111, 'AI Research Internship', 'Internship', 'Artificial Intelligence');
 
 INSERT INTO Student (student_id, name, email, password, dob) VALUES (123456789, 'Lachy Kitchen', 'kitla230@student.otago.ac.nz', 'apple123', '2000-06-24');
-INSERT INTO Student (student_id, name, email, password, dob) VALUES (987654321, 'Jay Lee', 'leeja744@student.otago.ac.nz', '123', '1942-1-4');
+INSERT INTO Student (student_id, name, email, password, dob) VALUES (987654321, 'Jay Lee', 'leeja744@student.otago.ac.nz', '321', '1942-1-4');
 INSERT INTO Student (student_id, name, email, password, dob) VALUES (111111, 'Call', 'cal', '987', '1989-09-02');
 INSERT INTO Student (student_id, name, email, password, dob) VALUES (1, 'Mahfuz', 'fuz', '420', '2010-10-10');
 

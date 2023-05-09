@@ -19,6 +19,7 @@ import ViewScholarship from './pages/View-Scholarship';
 import ViewResearch from './pages/View_Research';
 
 export default function App() {
+  const isLoggedIn = sessionStorage.getItem('isLoggedIn');
   return (
     <div className="App">
       <Routes>
