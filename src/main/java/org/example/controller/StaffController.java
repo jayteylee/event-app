@@ -2,15 +2,12 @@ package org.example.controller;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
-import org.example.domain.Event;
-import org.example.service.event.EventService;
+import org.example.login.LoginRequest;
 import org.example.service.staff.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @CrossOrigin("http://localhost:3000")

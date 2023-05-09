@@ -1,4 +1,4 @@
-package org.example.controller;
+package org.example.login;
 
 public class LoginRequest {
     private String username;
