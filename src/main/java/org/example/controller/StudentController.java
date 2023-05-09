@@ -1,8 +1,13 @@
 package org.example.controller;
 
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.security.Keys;
 import org.example.domain.Student;
+import org.example.login.LoginRequest;
 import org.example.service.student.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,6 +21,26 @@ public class StudentController{
 
     public StudentController(StudentService studentService) {
         this.studentService = studentService;
+    }
+
+    @PostMapping("/student/login")
+    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
+        // Validate the username and password against your database or authentication provider
+        boolean isValidCredentials = studentService.authenticate(loginRequest.getEmail(), loginRequest.getPassword());
+
+        if (isValidCredentials) {
+            // Create a JWT using the user's username as the subject and a secret key
+            String jwt = Jwts.builder()
+                    .setSubject(loginRequest.getEmail())
+                    .signWith(Keys.hmacShaKeyFor("my-secret-key".getBytes()))
+                    .compact();
+
+            // Return the JWT in the response body
+            return ResponseEntity.ok(jwt);
+        } else {
+            // Return an unauthorized status code if the credentials are invalid
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
     }
 
     @GetMapping("/students")
