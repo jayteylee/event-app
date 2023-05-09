@@ -5,18 +5,16 @@ import uniLogo from "../images/uni-logo.png"
 
 function HeaderSection() {
     const navigate = useNavigate();
-    const isLoggedIn = localStorage.getItem('isLoggedIn');
+    const isLoggedIn = sessionStorage.getItem('isLoggedIn');
+
     const handleClick = (e) => {
         e.preventDefault()
-        navigate('/')
+        isLoggedIn ? navigate('/events') : navigate('/')
     }
 
     const handleLogout = (e) => {
         e.preventDefault()
-        localStorage.removeItem('isLoggedIn');
-        localStorage.removeItem('user');
-        localStorage.removeItem('staff');
-        localStorage.removeItem('auth');
+        sessionStorage.clear();
         navigate('/login');
     }
     return (
