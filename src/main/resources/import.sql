@@ -7,26 +7,20 @@ INSERT INTO Event (event_id, title, type, start_time, end_time, location, capaci
 -- INSERT INTO Student (studentID, password, firstName, lastName, email, phoneNumber, DOB, degree, major, iwi)
 -- VALUES ('M0345678', 'password', 'Te Aroha', 'Brown', 'tearoha.brown@example.com', '0274567890', '1999-04-03', 'Bachelor of Information Science', 'Information Technology Management', 'Ngai Tahu');
 
--- INSERT INTO Staff (staffID, password, firstName, lastName, email, phoneNumber)
--- VALUES ('S0123456', 'password', 'Aroha', 'Jones', 'aroha.jones@example.com', '03 479 1234');
+INSERT INTO Booking (booking_id, eventid, studentid) VALUES ('12424124','G0456789', 'H0345678');
 
--- INSERT INTO Staff (staffID, password, firstName, lastName, email, phoneNumber)
--- VALUES ('S0456789', 'password', 'Tama', 'Smith', 'tama.smith@example.com', '03 479 2345');
+INSERT INTO Booking (booking_id, eventid, studentid) VALUES ('12121212','E0456789', 'M0345678');
 
--- INSERT INTO Booking (eventID, studentID)
--- VALUES ('E0123456', 'M0123456');
-
--- INSERT INTO Booking (eventID, studentID)
--- VALUES ('E0456789', 'M0345678');
-
--- INSERT INTO Liason (title, staffID, studentID, startTime, location)
--- VALUES ('Academic Advising', 'S0123456', 'M0123456', '2023-05-01 09:00:00', 'Owheo Building, Dunedin');
+INSERT INTO Liason (liason_id, location, start_time, title) VALUES (98, 'Owheo building', '2023-05-12 09:00:00', 'AI opportunities discussion');
 
 INSERT INTO Liason (liason_id, location, start_time, title) VALUES (15, 'Owheo Building', '2023-05-01 09:00:00', 'Academic Advising');
 
 INSERT INTO Scholarship (scholarship_id, name, num_available, subject, type) VALUES (10, 'Maori Information Science Scholarship', 2, 'Information Science', 'Merit-based');
+INSERT INTO Scholarship (scholarship_id, name, num_available, subject, type) VALUES (11, 'Jen Ear Oss Information Science Scholarship', 5, 'Information Science', 'Merit-based');
 
 INSERT INTO Research_opportunity (opportunity_id, title, type, subject) VALUES (111, 'AI Research Internship', 'Internship', 'Artificial Intelligence');
+INSERT INTO Research_opportunity (opportunity_id, title, type, subject) VALUES (101, 'Database Optimisation Summer Research Project', 'Research Project', 'Databases');
+
 
 INSERT INTO Student (student_id, name, email, password, dob) VALUES (123456789, 'Lachy Kitchen', 'kitla230@student.otago.ac.nz', 'apple123', '2000-06-24');
 INSERT INTO Student (student_id, name, email, password, dob) VALUES (987654321, 'Jay Lee', 'leeja744@student.otago.ac.nz', '321', '1942-1-4');
@@ -34,3 +28,7 @@ INSERT INTO Student (student_id, name, email, password, dob) VALUES (111111, 'Ca
 INSERT INTO Student (student_id, name, email, password, dob) VALUES (1, 'Mahfuz', 'fuz', '420', '2010-10-10');
 
 INSERT INTO Staff (staff_id, email, first_name, last_name, password, phone_number) VALUES (3976743, 'leeja744@staff.otago.ac.nz', 'Jay', 'Lee', '123', '0211234567');
+INSERT INTO Staff (staff_id, email, first_name, last_name, password, phone_number) VALUES (2976743, 'cal@staff.otago.ac.nz', 'Cal', 'Keenan', '123', '0271234567');
+INSERT INTO Staff (staff_id, email, first_name, last_name, password, phone_number) VALUES (1976743, 'jay@staff.otago.ac.nz', 'Jay', 'Lee', '123', '0221234567');
+INSERT INTO Staff (staff_id, email, first_name, last_name, password, phone_number) VALUES (0976743, 'lac@staff.otago.ac.nz', 'Lachy', 'Kitchen', '123', '0231234567');
+INSERT INTO Staff (staff_id, email, first_name, last_name, password, phone_number) VALUES (4976743, 'mah@staff.otago.ac.nz', 'Mahfuz', 'Abdul', '123', '0241234567');

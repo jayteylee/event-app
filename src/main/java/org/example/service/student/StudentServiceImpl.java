@@ -56,8 +56,8 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Boolean authenticate(String email, String password) {
-        Optional<Staff> staffOptional = studentRepository.findByEmailAndPassword(email, password);
+        Optional<Student> studentOptional = studentRepository.findByEmailAndPassword(email, password);
 
-        return staffOptional.isPresent();
+        return studentOptional.isPresent();
     }
 }
