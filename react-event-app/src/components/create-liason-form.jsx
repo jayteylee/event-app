@@ -11,6 +11,22 @@ function CreateLiasonForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (!title) {
+            alert('Title is required.');
+            return;
+        }
+
+        if (!startTime) {
+            alert('Start Time is required.');
+            return;
+        }
+
+        if (!location) {
+            alert('Location is required.');
+            return;
+        }
+
         await axios.post("http://localhost:8081/liasons", {
             title: title,
             startTime: startTime,

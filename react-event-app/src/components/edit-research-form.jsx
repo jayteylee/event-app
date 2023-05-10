@@ -11,6 +11,17 @@ function EditResearchForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (!title) {
+            alert('Title is required.');
+            return;
+        }
+
+        if (!subject) {
+            alert('Subject is required.');
+            return;
+        }
+
         await axios.put(`http://localhost:8081/research/${id}`, {
             title: title,
             type: type,

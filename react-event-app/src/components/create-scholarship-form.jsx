@@ -12,6 +12,27 @@ function CreateScholarshipForm(){
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (!name) {
+            alert('Name is required.');
+            return;
+        }
+
+        if (!subject) {
+            alert('Subject is required.');
+            return;
+        }
+
+        if (!numAvailable) {
+            alert('Number of available scholarships is required.');
+            return;
+        }
+
+        if (numAvailable <= 0) {
+            alert('Number of available scholarships must be a positive integer.');
+            return;
+        }
+
         await axios.post("http://localhost:8081/scholarships", {
             name: name,
             type: type,
