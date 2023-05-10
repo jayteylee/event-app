@@ -82,7 +82,7 @@ function Events() {
                                             <td class="text-center border px-6 py-4">{event.endTime}</td>
                                             <td class="text-center border px-6 py-4">{event.location}</td>
                                             <td class="text-center border px-6 py-4">
-                                                <div className="flex flex-row">
+                                                <div className="flex flex-row justify-center">
                                                 <p onClick={() => viewEvent(event.eventID)} className="transition-all mx-2 font-medium text-yellow-400 hover:underline hover:cursor-pointer">View</p>
                                                 {isStaff &&
                                                     <p onClick={() => editEvent(event.eventID)} className="transition-all mx-2 font-medium text-blue-600 dark:text-blue-500 hover:underline hover:cursor-pointer">Edit</p>
