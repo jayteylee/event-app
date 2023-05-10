@@ -1,6 +1,7 @@
 package org.example.controller;
 
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import org.example.domain.Student;
 import org.example.login.LoginRequest;
@@ -32,9 +33,8 @@ public class StudentController{
             // Create a JWT using the user's username as the subject and a secret key
             String jwt = Jwts.builder()
                     .setSubject(loginRequest.getEmail())
-                    .signWith(Keys.hmacShaKeyFor("my-secret-key".getBytes()))
+                    .signWith(Keys.secretKeyFor(SignatureAlgorithm.HS256))
                     .compact();
-
             // Return the JWT in the response body
             return ResponseEntity.ok(jwt);
         } else {
