@@ -5,5 +5,5 @@ import org.example.domain.Staff;
 
 public interface StaffService {
 
-    Boolean authenticate(String username, String password);
+    Boolean authenticate(String email, String password);
 }

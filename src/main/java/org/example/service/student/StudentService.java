@@ -15,4 +15,6 @@ public interface StudentService {
     Student updateStudent(Student newStudent, Long id);
 
     List<Student> deleteStudent(Long id);
+
+    Boolean authenticate(String email, String password);
 }
