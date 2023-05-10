@@ -6,8 +6,6 @@ import { useNavigate, useParams } from "react-router-dom";
 
 function Events() {
     const [events, setEvents] = useState([]);
-    const { id } = useParams();
-
     const isStaff = sessionStorage.getItem('staff');
 
     useEffect(() => {
@@ -16,7 +14,7 @@ function Events() {
 
     const loadEvents = async () => {
         const result = await axios.get("http://localhost:8081/events");
-        console.log(result.data)
+        console.log(result.data);
         setEvents(result.data);
     }
 
@@ -40,6 +38,7 @@ function Events() {
         navigate(`/view-event/${id}`)
     }
 
+    console.log('isStaff', isStaff);
     return (
         <div className='w-screen h-screen'>
             <HeaderSection></HeaderSection>
@@ -75,7 +74,6 @@ function Events() {
                                 </tr>
                             </thead>
                             <tbody>
-
                                 {
                                     events.map((event) => (
                                         <tr class="bg-white border-b">
@@ -84,13 +82,15 @@ function Events() {
                                             <td class="text-center border px-6 py-4">{event.endTime}</td>
                                             <td class="text-center border px-6 py-4">{event.location}</td>
                                             <td class="text-center border px-6 py-4">
-                                                <a onClick={() => viewEvent(event.eventID)} className="transition-all mx-2 font-medium text-yellow-400 hover:underline hover:cursor-pointer">View</a>
+                                                <div className="flex flex-row">
+                                                <p onClick={() => viewEvent(event.eventID)} className="transition-all mx-2 font-medium text-yellow-400 hover:underline hover:cursor-pointer">View</p>
                                                 {isStaff &&
-                                                    <a onClick={() => editEvent(event.eventID)} className="transition-all mx-2 font-medium text-blue-600 dark:text-blue-500 hover:underline hover:cursor-pointer">Edit</a>
+                                                    <p onClick={() => editEvent(event.eventID)} className="transition-all mx-2 font-medium text-blue-600 dark:text-blue-500 hover:underline hover:cursor-pointer">Edit</p>
                                                 }
                                                 {isStaff &&
-                                                    <a onClick={() => deleteEvent(event.eventID)} className="transition-all mx-2 font-medium text-red-600 dark:text-red-600 hover:underline hover:cursor-pointer">Delete</a>
+                                                    <p onClick={() => deleteEvent(event.eventID)} className="transition-all mx-2 font-medium text-red-600 dark:text-red-600 hover:underline hover:cursor-pointer">Delete</p>
                                                 }
+                                                </div>
                                             </td>
                                         </tr>
                                     ))
@@ -100,7 +100,6 @@ function Events() {
                     </div>
                 </div>
             </div>
-
         </div>
     )
 } export default Events;
