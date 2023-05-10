@@ -23,6 +23,7 @@ dependencies {
     runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.11.2'
     testImplementation 'junit:junit:4.12' // for JUnit
     testImplementation 'org.testng:testng:7.4.0' // for TestNG
+    implementation group: 'javax.persistence', name: 'javax.persistence-api', version: '2.2'
 }
 
 test {
