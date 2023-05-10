@@ -47,7 +47,7 @@ function Events() {
                 <div className="flex flex-col w-1/5 h-full bg-slate-50 shadow-lg">
                     <h2 className="text-3xl font-bold text-center mt-8">Welcome back!</h2>
                     <div className="flex flex-row justify-center h-10 my-7">
-                        <button value="create-event" type="button" onClick={handleClick} className="hover:bg-slate-100 transition-all rounded-md justify-center w-3/5 border shadow-md font-poppins text-black font-semibold mx-2">Create Event</button>
+                        {isStaff && <button value="create-event" type="button" onClick={handleClick} className="hover:bg-slate-100 transition-all rounded-md justify-center w-3/5 border shadow-md font-poppins text-black font-semibold mx-2">Create Event</button>}
                     </div>
                 </div>
                 <div className="flex flex-col w-4/5 h-full">
