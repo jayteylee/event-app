@@ -31,7 +31,7 @@ function CreateEventForm(props) {
             alert('Capacity is required.');
             return;
         }
-
+        
         if (!location) {
             alert('Location is required.');
             return;
