@@ -18,6 +18,27 @@ function EditEventForm(props) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (!title) {
+            alert('Title is required.');
+            return;
+        }
+
+        if (!startTime) {
+            alert('Start Time is required.');
+            return;
+        }
+
+        if (!capacity) {
+            alert('Capacity is required.');
+            return;
+        }
+
+        if (!location) {
+            alert('Location is required.');
+            return;
+        }
+
         await axios.put(`http://localhost:8081/events/${id}`, {
             title: title,
             type: type,
