@@ -7,9 +7,9 @@ INSERT INTO Event (event_id, title, type, start_time, end_time, location, capaci
 -- INSERT INTO Student (studentID, password, firstName, lastName, email, phoneNumber, DOB, degree, major, iwi)
 -- VALUES ('M0345678', 'password', 'Te Aroha', 'Brown', 'tearoha.brown@example.com', '0274567890', '1999-04-03', 'Bachelor of Information Science', 'Information Technology Management', 'Ngai Tahu');
 
-INSERT INTO Booking (booking_id, eventid, studentid) VALUES ('12424124','G0456789', 'H0345678');
+INSERT INTO Booking (booking_id, event_id, student_id) VALUES ('12424124','G0456789', 'H0345678');
 
-INSERT INTO Booking (booking_id, eventid, studentid) VALUES ('12121212','E0456789', 'M0345678');
+INSERT INTO Booking (booking_id, event_id, student_id) VALUES ('12121212','E0456789', 'M0345678');
 
 INSERT INTO Liason (liason_id, location, start_time, title) VALUES (98, 'Owheo building', '2023-05-12 09:00:00', 'AI opportunities discussion');
 

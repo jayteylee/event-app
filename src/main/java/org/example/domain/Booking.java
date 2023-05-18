@@ -16,17 +16,17 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int bookingId;
 
-    public String eventID;
+    public String eventId;
 
-    public String studentID;
+    public String studentId;
 
     public Booking(){
     }
 
-    public Booking(int bookingId, String eventID, String studentID) {
+    public Booking(int bookingId, String eventId, String studentId) {
         this.bookingId = bookingId;
-        this.eventID = eventID;
-        this.studentID = studentID;
+        this.eventId = eventId;
+        this.studentId = studentId;
     }
 
     public int getBookingId() {
@@ -38,18 +38,18 @@ public class Booking {
     }
 
     public String getEventID() {
-        return eventID;
+        return eventId;
     }
 
     public void setEventID(String eventID) {
-        this.eventID = eventID;
+        this.eventId = eventID;
     }
 
-    public String getStudentID() {
-        return studentID;
+    public String getStudentId() {
+        return studentId;
     }
 
-    public void setStudentID(String studentID) {
-        this.studentID = studentID;
+    public void setStudentID(String studentId) {
+        this.studentId = studentId;
     }
 }
