@@ -5,7 +5,10 @@ import org.example.service.booking.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLOutput;
 import java.util.List;
+
+import static java.lang.Long.parseLong;
 
 @RestController
 @CrossOrigin("http://localhost:3000")
@@ -23,9 +26,14 @@ public class BookingController {
         return bookingService.getAllBookings();
     }
 
-    @GetMapping("/bookings/{id}")
-    Booking getBookingById(@PathVariable Long id) {
-        return bookingService.getBookingById(id);
+    @GetMapping("/bookings/event/{id}")
+    Booking getBookingByEventId(@PathVariable Long id) {
+        return bookingService.getBookingByEventId(id);
+    }
+
+    @GetMapping("/bookings/student/{id}")
+    List<Booking> getBookingByStudentId(@PathVariable String id) {
+        return bookingService.getBookingsByStudentId(id);
     }
 
     @PostMapping("/bookings")
