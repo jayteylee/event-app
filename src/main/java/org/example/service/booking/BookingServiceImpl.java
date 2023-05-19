@@ -17,6 +17,8 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public Booking createBooking(Booking newBooking) {
+        newBooking.setEventID(newBooking.getEventID());
+        newBooking.setStudentID(newBooking.getStudentId());
         return bookingRepository.save(newBooking);
     }
 
