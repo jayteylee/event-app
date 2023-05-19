@@ -4,10 +4,7 @@ import org.example.domain.Student;
 
 import java.io.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
 
 public class CsvReader {
 
@@ -27,7 +24,8 @@ public class CsvReader {
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(",");
                 String digitsOnly = values[0].replaceAll("[^0-9]", ""); // removes all non-numeric characters
-                writeToFile("INSERT INTO Student (student_id, name, email, password, dob) VALUES (" + digitsOnly + ", '" + values[1].trim() + "', '" + values[2].trim() + "', '" + values[3].trim() + "', '" + values[4].trim() + "');");
+                UUID password = UUID.randomUUID();
+                writeToFile("INSERT INTO Student (student_id, name, email, password, dob) VALUES (" + digitsOnly + ", '" + values[1].trim() + "', '" + values[2].trim() + "', '" + password + "', '" + values[3].trim() + "');");
             }
         } catch (Exception e) {
             System.out.printf("Caught Exception: %s%n", e.getMessage());
