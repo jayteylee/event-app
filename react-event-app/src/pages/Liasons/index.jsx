@@ -80,8 +80,13 @@ function Liasons() {
                                                     <td class="text-center border px-6 py-4">{liason.startTime}</td>
                                                     <td class="text-center border px-6 py-4">{liason.location}</td>
                                                     <td class="text-center border px-6 py-4">
-                                                        <a onClick={() => editLiason(liason.liasonId)} className="transition-all mx-2 font-medium text-blue-600 dark:text-blue-500 hover:underline hover:cursor-pointer">Edit</a>
-                                                        <a onClick={() => deleteLiason(liason.liasonId)} className="transition-all mx-2 font-medium text-red-600 dark:text-red-600 hover:underline hover:cursor-pointer">Delete</a>
+                                                    <div className="flex flex-row justify-center">
+                                                    <p className="transition-all mx-2 font-medium text-yellow-400 hover:underline hover:cursor-pointer">View</p>
+                                                        {isStaff &&
+                                                            <p onClick={() => editLiason(liason.liasonId)} className="transition-all mx-2 font-medium text-blue-600 dark:text-blue-500 hover:underline hover:cursor-pointer">Edit</p>}
+                                                        {isStaff &&
+                                                            <p onClick={() => deleteLiason(liason.liasonId)} className="transition-all mx-2 font-medium text-red-600 dark:text-red-600 hover:underline hover:cursor-pointer">Delete</p>}
+                                                    </div>
                                                     </td>
                                                 </tr>
                                             ))
