@@ -28,13 +28,13 @@ public class StudentController{
     public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
         // Validate the username and password against your database or authentication provider
         boolean isValidCredentials = studentService.authenticate(loginRequest.getEmail(), loginRequest.getPassword());
-
+        
         if (isValidCredentials) {
             // Create a JWT using the user's username as the subject and a secret key
             String jwt = Jwts.builder()
-                    .setSubject(loginRequest.getEmail())
-                    .signWith(Keys.secretKeyFor(SignatureAlgorithm.HS256))
-                    .compact();
+            .setSubject(loginRequest.getEmail())
+            .signWith(Keys.secretKeyFor(SignatureAlgorithm.HS256))
+            .compact();
             // Return the JWT in the response body
             return ResponseEntity.ok(jwt);
         } else {
@@ -42,13 +42,17 @@ public class StudentController{
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
     }
+    @GetMapping("/students/email/{email}")
+    Student getStudentByEmail(@PathVariable String email){
+        return studentService.getStudentByEmail(email);
+    }
 
     @GetMapping("/students")
     List<Student> getAllStudents(){
         return studentService.getAllStudents();
     }
 
-    @GetMapping("/students/{id}")
+    @GetMapping("/students/id/{id}")
     Student getStudentById(@PathVariable Long id) {
         return studentService.getStudentById(id);
     }
@@ -58,12 +62,12 @@ public class StudentController{
         return studentService.createStudent(student);
     }
 
-    @PutMapping("/students/{id}")
+    @PutMapping("/students/id/{id}")
     Student updateStudent(@RequestBody Student student, @PathVariable Long id){
         return studentService.updateStudent(student, id);
     }
 
-    @DeleteMapping("/students/{id}")
+    @DeleteMapping("/students/id/{id}")
     List<Student> deleteStudent(@PathVariable Long id) {
         return studentService.deleteStudent(id);
     }

@@ -17,7 +17,7 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public Booking createBooking(Booking newBooking) {
-        newBooking.setEventID(newBooking.getEventID());
+        newBooking.setEventId(newBooking.getEventId());
         newBooking.setStudentID(newBooking.getStudentId());
         return bookingRepository.save(newBooking);
     }
@@ -46,7 +46,7 @@ public class BookingServiceImpl implements BookingService {
     public Booking updateBooking(Booking newBooking, Long id) {
         return bookingRepository.findById(id)
                 .map(booking -> {
-                    booking.setEventID(newBooking.getEventID());
+                    booking.setEventId(newBooking.getEventId());
                     booking.setStudentID(newBooking.getStudentId());
                     return bookingRepository.save(booking);
                 }).orElseThrow(() -> new ObjectNotFoundException(id));

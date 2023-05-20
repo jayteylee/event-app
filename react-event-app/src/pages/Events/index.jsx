@@ -6,17 +6,43 @@ import { useNavigate, useParams } from "react-router-dom";
 
 function Events() {
     const [events, setEvents] = useState([]);
+    const [bookings, setBookings] = useState([]);
     const isStaff = sessionStorage.getItem('staff');
+    const studentId = sessionStorage.getItem('studentId');
 
     useEffect(() => {
-        loadEvents();
+        loadPage();
     }, []);
 
-    const loadEvents = async () => {
-        const result = await axios.get("http://localhost:8081/events");
-        console.log(result.data);
-        setEvents(result.data);
+    const loadPage = async () => {
+        const [eventsResponse, bookingsResponse] = await Promise.all([
+            axios.get("http://localhost:8081/events"),
+            axios.get(`http://localhost:8081/bookings/student/${studentId}`)
+          ]);
+      
+          const eventsData = eventsResponse.data;
+          const bookingsData = bookingsResponse.data;
+      
+          console.log(eventsData);
+          setEvents(eventsData);
+      
+          console.log(bookingsData);
+          setBookings(bookingsData);
+        
+        // axios.get("http://localhost:8081/events");
+        // console.log(result.data);
+        // setEvents(result.data);
+
+        // const res = await axios.get(`http://localhost:8081/bookings/student/${studentId}`);
+        // console.log(result.data);
+        // setBookings(result.data);
     }
+
+    // const loadBookings = async () => {
+    //     const result = await axios.get(`http://localhost:8081/bookings/student/${studentId}`);
+    //     console.log(result.data);
+    //     setBookings(result.data);
+    // }
 
     const navigate = useNavigate();
 
@@ -27,7 +53,7 @@ function Events() {
 
     const deleteEvent = async (id) => {
         await axios.delete(`http://localhost:8081/events/${id}`)
-        loadEvents();
+        loadPage();
     }
 
     const editEvent = async (id) => {
@@ -46,6 +72,13 @@ function Events() {
             <div className="flex flex-row w-full h-full">
                 <div className="flex flex-col w-1/5 h-full bg-slate-50 shadow-lg">
                     <h2 className="text-3xl font-bold text-center mt-8">Welcome back!</h2>
+                    {
+                        bookings.map(booking => (
+                            <>
+                            <p>{booking.studentId}</p>
+                            </>
+                        ))
+                    }
                     <div className="flex flex-row justify-center h-10 my-7">
                         {isStaff && <button value="create-event" type="button" onClick={handleClick} className="hover:bg-slate-100 transition-all rounded-md justify-center w-3/5 border shadow-md font-poppins text-black font-semibold mx-2">Create Event</button>}
                     </div>

@@ -26,6 +26,10 @@ function Login() {
                     if (email.includes('@staff')) {
                         sessionStorage.setItem('staff', true);
                     }else{
+                        const result = axios.get(`http://localhost:8081/students/email/${email}`);
+                            result.then(response => {
+                                sessionStorage.setItem('studentId', response.data.studentId);
+                            })
                         sessionStorage.removeItem('staff');
                     }
                     navigate('/events');

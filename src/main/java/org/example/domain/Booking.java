@@ -37,12 +37,12 @@ public class Booking {
         this.bookingId = bookingId;
     }
 
-    public String getEventID() {
+    public String getEventId() {
         return eventId;
     }
 
-    public void setEventID(String eventID) {
-        this.eventId = eventID;
+    public void setEventId(String eventId) {
+        this.eventId = eventId;
     }
 
     public String getStudentId() {

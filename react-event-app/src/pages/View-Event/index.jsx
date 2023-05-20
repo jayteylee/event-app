@@ -7,8 +7,10 @@ import Navigation from "../../components/navigation";
 function ViewEvent() {
     const { id } = useParams();
     const [event, setEvent] = useState([]);
+    const [eventId, setEventId] = useState("");
 
     const navigate = useNavigate();
+    const studentId = sessionStorage.getItem("studentId");
 
     useEffect(() => {
         loadEvent();
@@ -18,10 +20,16 @@ function ViewEvent() {
         const result = await axios.get(`http://localhost:8081/events/${id}`);
         console.log(result.data)
         setEvent(result.data);
+        setEventId(result.data.eventID);
     }
 
-    const handleClick = (e) => {
+    const handleClick = async (e) => {
         e.preventDefault()
+        await axios.post("http://localhost:8081/bookings", {
+            event: eventId,
+            studentId: studentId
+        });
+        navigate("/events");
     }
 
     const handleCancel = (e) => {
@@ -59,7 +67,7 @@ function ViewEvent() {
                         </div>
                         <div className="flex flex-col">
                         <div className="flex flex-row justify-center h-10 my-2">
-                                <button value="create-liason" type="button" onClick={handleClick} className="hover:bg-yellow-400 hover:text-white border-yellow-400 text-yellow-400 transition-all rounded-md justify-center w-3/5 border shadow-md font-poppins text-black font-semibold mx-2">RSVP</button>
+                                <button value="create-liason" type="button" onClick={handleClick} className="hover:bg-yellow-400 hover:text-white border-yellow-400 text-yellow-400 transition-all rounded-md justify-center w-3/5 border shadow-md font-poppins font-semibold mx-2">RSVP</button>
                             </div>
                             <div className="flex flex-row justify-center h-10 my-2">
                                 <button type="button" onClick={handleCancel} className="hover:bg-red-600 hover:text-white transition-all rounded-md justify-center w-3/5 border shadow-md font-poppins text-red-600 border-red-600 font-semibold mx-2">Go Back</button>
