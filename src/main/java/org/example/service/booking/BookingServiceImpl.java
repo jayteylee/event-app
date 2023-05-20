@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class BookingServiceImpl implements BookingService {
@@ -16,6 +17,8 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public Booking createBooking(Booking newBooking) {
+        newBooking.setEventID(newBooking.getEventID());
+        newBooking.setStudentID(newBooking.getStudentId());
         return bookingRepository.save(newBooking);
     }
 
@@ -25,17 +28,26 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public Booking getBookingById(Long id) {
+    public Booking getBookingByEventId(Long id) {
         return bookingRepository.findById(id)
                 .orElseThrow(() -> new ObjectNotFoundException(id));
     }
+
+    @Override
+    public List<Booking> getBookingsByStudentId(String id) {
+        List<Booking> bookings = bookingRepository.findAll();
+        return bookings.stream()
+                .filter(booking -> booking.getStudentId().equals(id))
+                .collect(Collectors.toList());
+    }
+
 
     @Override
     public Booking updateBooking(Booking newBooking, Long id) {
         return bookingRepository.findById(id)
                 .map(booking -> {
                     booking.setEventID(newBooking.getEventID());
-                    booking.setStudentID(newBooking.getStudentID());
+                    booking.setStudentID(newBooking.getStudentId());
                     return bookingRepository.save(booking);
                 }).orElseThrow(() -> new ObjectNotFoundException(id));
     }

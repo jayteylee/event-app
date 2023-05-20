@@ -10,9 +10,11 @@ public interface BookingService {
 
     List<Booking> getAllBookings();
 
-    Booking getBookingById(Long id);
+    Booking getBookingByEventId(Long id);
 
     Booking updateBooking(Booking newBooking, Long id);
 
     List<Booking> deleteBooking(Long id);
+
+    List<Booking> getBookingsByStudentId(String id);
 }
