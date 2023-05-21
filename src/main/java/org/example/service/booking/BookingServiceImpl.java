@@ -19,6 +19,9 @@ public class BookingServiceImpl implements BookingService {
     public Booking createBooking(Booking newBooking) {
         newBooking.setEventId(newBooking.getEventId());
         newBooking.setStudentID(newBooking.getStudentId());
+        newBooking.setEventTitle(newBooking.getEventTitle());
+        newBooking.setEventLocation(newBooking.getEventLocation());
+        newBooking.setEventStartTime(newBooking.getEventStartTime());
         return bookingRepository.save(newBooking);
     }
 
@@ -48,6 +51,11 @@ public class BookingServiceImpl implements BookingService {
                 .map(booking -> {
                     booking.setEventId(newBooking.getEventId());
                     booking.setStudentID(newBooking.getStudentId());
+
+                    booking.setEventLocation(newBooking.getEventLocation());
+                    booking.setEventStartTime(newBooking.getEventStartTime());
+                    booking.setEventTitle(newBooking.getEventTitle());
+
                     return bookingRepository.save(booking);
                 }).orElseThrow(() -> new ObjectNotFoundException(id));
     }

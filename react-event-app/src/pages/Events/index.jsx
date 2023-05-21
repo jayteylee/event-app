@@ -3,6 +3,7 @@ import HeaderSection from "../../components/header";
 import Navigation from "../../components/navigation";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import EventCard from "../../components/event-card";
 
 function Events() {
     const [events, setEvents] = useState([]);
@@ -14,35 +15,24 @@ function Events() {
         loadPage();
     }, []);
 
-    const loadPage = async () => {
-        const [eventsResponse, bookingsResponse] = await Promise.all([
-            axios.get("http://localhost:8081/events"),
-            axios.get(`http://localhost:8081/bookings/student/${studentId}`)
-          ]);
-      
-          const eventsData = eventsResponse.data;
-          const bookingsData = bookingsResponse.data;
-      
-          console.log(eventsData);
-          setEvents(eventsData);
-      
-          console.log(bookingsData);
-          setBookings(bookingsData);
-        
-        // axios.get("http://localhost:8081/events");
-        // console.log(result.data);
-        // setEvents(result.data);
+    function loadPage() {
+        const eventsRequest = axios.get("http://localhost:8081/events");
+        const bookingsRequest = axios.get(`http://localhost:8081/bookings/student/${studentId}`);
+        Promise.all([eventsRequest, bookingsRequest])
+            .then((responses) => {
+                const eventsData = responses[0].data;
+                const bookingsData = responses[1].data;
+                setEvents(eventsData);
+                setBookings(bookingsData);
 
-        // const res = await axios.get(`http://localhost:8081/bookings/student/${studentId}`);
-        // console.log(result.data);
-        // setBookings(result.data);
+                console.log(eventsData);
+                console.log(bookingsData);
+
+            })
+            .catch((error) => {
+                console.log(error);
+            })
     }
-
-    // const loadBookings = async () => {
-    //     const result = await axios.get(`http://localhost:8081/bookings/student/${studentId}`);
-    //     console.log(result.data);
-    //     setBookings(result.data);
-    // }
 
     const navigate = useNavigate();
 
@@ -52,16 +42,22 @@ function Events() {
     }
 
     const deleteEvent = async (id) => {
-        await axios.delete(`http://localhost:8081/events/${id}`)
+        await axios.delete(`http://localhost:8081/events/${id}`);
         loadPage();
     }
 
+    const deleteBooking = async (id) => {
+        await axios.delete(`http://localhost:8081/bookings/${id}`);
+        loadPage();
+
+    }
+
     const editEvent = async (id) => {
-        navigate(`/update-event/${id}`)
+        navigate(`/update-event/${id}`);
     }
 
     const viewEvent = async (id) => {
-        navigate(`/view-event/${id}`)
+        navigate(`/view-event/${id}`);
     }
 
     console.log('isStaff', isStaff);
@@ -71,11 +67,31 @@ function Events() {
             <Navigation></Navigation>
             <div className="flex flex-row w-full h-full">
                 <div className="flex flex-col w-1/5 h-full bg-slate-50 shadow-lg">
-                    <h2 className="text-3xl font-bold text-center mt-8">Welcome back!</h2>
+                    <h2 className="text-3xl font-bold text-center mt-8">Kia Ora!</h2>
                     {
                         bookings.map(booking => (
                             <>
-                            <p>{booking.studentId}</p>
+                                <li class="flex py-6">
+                                    <div class="ml-4 flex flex-1 flex-col">
+                                        <div>
+                                            <div class="flex justify-between text-base font-medium text-gray-900">
+                                                <h3>
+                                                    <a href="#">{booking.eventTitle}</a>
+                                                </h3>
+                                            </div>
+                                            <p class="mt-1 text-sm text-gray-500">{booking.eventStartTime}</p>
+                                        </div>
+                                        <div class="flex flex-1 items-end justify-between text-sm">
+                                            <p class="text-gray-500">{booking.eventLocation}</p>
+
+                                            <div class="flex mr-4">
+                                                <button onClick={() => deleteBooking(booking.bookingId)} type="button" class="font-medium text-red-500 hover:text-red-600">Remove</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                {/* <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr> */}
+                                <hr className="border-b border-gray-300 w-11/12 mx-auto" />
                             </>
                         ))
                     }
@@ -84,7 +100,15 @@ function Events() {
                     </div>
                 </div>
                 <div className="flex flex-col w-4/5 h-full">
-                    <h2 className="text-3xl font-bold text-center mt-8">Events</h2>
+                    <h2 className="text-3xl font-bold text-center mt-8">Events || Pureitanga</h2>
+                    <div className="flex flex-row">
+                        {
+                            events.map((event, index) => (
+                                <EventCard key={index} event={event}></EventCard>
+                            ))
+                        }
+                    </div>
+
                     <div className="m-9 relative overflow-x-auto shadow-md sm:rounded-lg">
                         <table class="w-full marker:text-sm text-left text-gray-500">
                             <thead class="text-xs text-gray-700 uppercase bg-gray-50">
@@ -116,13 +140,13 @@ function Events() {
                                             <td class="text-center border px-6 py-4">{event.location}</td>
                                             <td class="text-center border px-6 py-4">
                                                 <div className="flex flex-row justify-center">
-                                                <p onClick={() => viewEvent(event.eventID)} className="transition-all mx-2 font-medium text-yellow-400 hover:underline hover:cursor-pointer">View</p>
-                                                {isStaff &&
-                                                    <p onClick={() => editEvent(event.eventID)} className="transition-all mx-2 font-medium text-blue-600 dark:text-blue-500 hover:underline hover:cursor-pointer">Edit</p>
-                                                }
-                                                {isStaff &&
-                                                    <p onClick={() => deleteEvent(event.eventID)} className="transition-all mx-2 font-medium text-red-600 dark:text-red-600 hover:underline hover:cursor-pointer">Delete</p>
-                                                }
+                                                    <p onClick={() => viewEvent(event.eventID)} className="transition-all mx-2 font-medium text-yellow-400 hover:underline hover:cursor-pointer">View</p>
+                                                    {isStaff &&
+                                                        <p onClick={() => editEvent(event.eventID)} className="transition-all mx-2 font-medium text-blue-600 dark:text-blue-500 hover:underline hover:cursor-pointer">Edit</p>
+                                                    }
+                                                    {isStaff &&
+                                                        <p onClick={() => deleteEvent(event.eventID)} className="transition-all mx-2 font-medium text-red-600 dark:text-red-600 hover:underline hover:cursor-pointer">Delete</p>
+                                                    }
                                                 </div>
                                             </td>
                                         </tr>

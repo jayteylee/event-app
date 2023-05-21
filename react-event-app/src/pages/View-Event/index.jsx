@@ -8,7 +8,9 @@ function ViewEvent() {
     const { id } = useParams();
     const [event, setEvent] = useState([]);
     const [eventId, setEventId] = useState("");
-
+    const [eventTitle, setEventTitle] = useState("");   
+    const [eventLocation, setEventLocation] = useState("");
+    const [eventStartTime, setEventStartTime] = useState("");
     const navigate = useNavigate();
     const studentId = sessionStorage.getItem("studentId");
 
@@ -21,13 +23,21 @@ function ViewEvent() {
         console.log(result.data)
         setEvent(result.data);
         setEventId(result.data.eventID);
+        setEventTitle(result.data.title); 
+        setEventLocation(result.data.location);
+        setEventStartTime(result.data.startTime);
+
+        console.log(result.data.eventTitle);
     }
 
     const handleClick = async (e) => {
         e.preventDefault()
         await axios.post("http://localhost:8081/bookings", {
-            event: eventId,
-            studentId: studentId
+            eventId: eventId,
+            studentId: studentId,
+            eventLocation: eventLocation,
+            eventTitle: eventTitle,
+            eventStartTime: eventStartTime
         });
         navigate("/events");
     }
