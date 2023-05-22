@@ -8,7 +8,7 @@ function ViewEvent() {
     const { id } = useParams();
     const [event, setEvent] = useState([]);
     const [eventId, setEventId] = useState("");
-    const [eventTitle, setEventTitle] = useState("");   
+    const [eventTitle, setEventTitle] = useState("");
     const [eventLocation, setEventLocation] = useState("");
     const [eventStartTime, setEventStartTime] = useState("");
     const navigate = useNavigate();
@@ -23,12 +23,14 @@ function ViewEvent() {
         console.log(result.data)
         setEvent(result.data);
         setEventId(result.data.eventID);
-        setEventTitle(result.data.title); 
+        setEventTitle(result.data.title);
         setEventLocation(result.data.location);
         setEventStartTime(result.data.startTime);
 
         console.log(result.data.eventTitle);
     }
+
+    const isStaff = sessionStorage.getItem('staff');
 
     const handleClick = async (e) => {
         e.preventDefault()
@@ -53,7 +55,7 @@ function ViewEvent() {
             <div class="flex flex-col items-center justify-center w-3/4 px-8 py-32 mx-auto">
                 <div class="w-full rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 bg-gray-50">
                     <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-                    <div className="flex flex-row">
+                        <div className="flex flex-row">
                             <p className="mx-2">{event.startTime}</p>
                             <p className="mx-2">-</p>
                             <p className="mx-2">{event.endTime}</p>
@@ -68,7 +70,7 @@ function ViewEvent() {
                         <div className="flex flex-row">
                             <h3 className="mr-3 w-1/5">Location:</h3>
                             <div className="px-3 rounded-md shadow-md">
-                            <p>{event.location}</p>
+                                <p>{event.location}</p>
                             </div>
                         </div>
                         <div className="flex flex-row">
@@ -76,13 +78,15 @@ function ViewEvent() {
                             <p className="px-3 rounded-md shadow-md">{event.description}</p>
                         </div>
                         <div className="flex flex-col">
-                        <div className="flex flex-row justify-center h-10 my-2">
-                                <button value="create-liason" type="button" onClick={handleClick} className="hover:bg-yellow-400 hover:text-white border-yellow-400 text-yellow-400 transition-all rounded-md justify-center w-3/5 border shadow-md font-poppins font-semibold mx-2">RSVP</button>
+                            <div className="flex flex-row justify-center h-10 my-2">
+                                {!isStaff &&
+                                    <button type="button" onClick={handleClick} className="hover:bg-yellow-400 hover:text-white border-yellow-400 text-yellow-400 transition-all rounded-md justify-center w-3/5 border shadow-md font-poppins font-semibold mx-2">RSVP</button>
+                                }
                             </div>
                             <div className="flex flex-row justify-center h-10 my-2">
                                 <button type="button" onClick={handleCancel} className="hover:bg-red-600 hover:text-white transition-all rounded-md justify-center w-3/5 border shadow-md font-poppins text-red-600 border-red-600 font-semibold mx-2">Go Back</button>
                             </div>
-                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -3,11 +3,18 @@ import HeaderSection from "../../components/header";
 import Navigation from "../../components/navigation";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
-import EventCard from "../../components/event-card";
+import {
+    Card,
+    CardBody,
+    CardFooter,
+    Typography,
+    Button
+  } from "@material-tailwind/react";
 
 function Events() {
     const [events, setEvents] = useState([]);
     const [bookings, setBookings] = useState([]);
+    const [empty, setEmpty] = useState(true);
     const isStaff = sessionStorage.getItem('staff');
     const studentId = sessionStorage.getItem('studentId');
 
@@ -25,6 +32,11 @@ function Events() {
                 setEvents(eventsData);
                 setBookings(bookingsData);
 
+                if(Array.isArray(bookingsData) && bookingsData.length === 0){
+                    setEmpty(true);
+                }else{
+                    setEmpty(false);
+                }
                 console.log(eventsData);
                 console.log(bookingsData);
 
@@ -62,12 +74,17 @@ function Events() {
 
     console.log('isStaff', isStaff);
     return (
-        <div className='w-screen h-screen'>
+        <div className='w-screen h-screen  overflow-x-hidden'>
             <HeaderSection></HeaderSection>
             <Navigation></Navigation>
             <div className="flex flex-row w-full h-full">
                 <div className="flex flex-col w-1/5 h-full bg-slate-50 shadow-lg">
                     <h2 className="text-3xl font-bold text-center mt-8">Kia Ora!</h2>
+                    <hr className="border-b border-gray-300 w-11/12 mx-auto my-4" />
+                    <h2 className="font-semibold text-center mt-2">Here are your bookings:</h2>
+                    {empty &&
+                        <h3 className="text-center mt-8 italic">You have no bookings...</h3>
+                    }
                     {
                         bookings.map(booking => (
                             <>
@@ -100,60 +117,37 @@ function Events() {
                     </div>
                 </div>
                 <div className="flex flex-col w-4/5 h-full">
-                    <h2 className="text-3xl font-bold text-center mt-8">Events || Pureitanga</h2>
-                    <div className="flex flex-row">
+                    <h2 className="text-3xl font-bold text-center mt-8 w-full">Events || Pureitanga</h2>
+                    <hr className="border-b border-gray-300 w-11/12 mx-auto my-4" />
+                    <div className="grid gap-2 grid-cols-3 w-full">
                         {
                             events.map((event, index) => (
-                                <EventCard key={index} event={event}></EventCard>
+                                <div className="w-full mx-6">
+                                <Card className="mt-6 w-[350px] h-60 mx-2 rounded-lg shadow-xl bg-gray-50">
+                                <CardBody className="h-4/5">
+                                  <Typography variant="h5" color="blue-gray" className=" h-14 w-full text-overflow: ellipsis;">
+                                    {event.title}
+                                  </Typography>
+                                  <Typography variant="h1" color="blue-gray" className="w-full my-2">
+                                    {event.location}
+                                  </Typography>
+                                  <Typography className="w-full">
+                                    {event.description}
+                                  </Typography>
+                                </CardBody>
+                                <CardFooter className="pt-0 flex-row flex">
+                                  <Button onClick={() => viewEvent(event.eventID)} className="text-white bg-blue-500 mr-2">View</Button>
+                                  {isStaff &&
+                                  <Button onClick={() => editEvent(event.eventID)} className="text-white bg-yellow-500 mx-2">Edit</Button>
+                                  }
+                                  {isStaff &&
+                                  <Button onClick={() => deleteEvent(event.eventID)} className="text-white bg-red-500 mx-2">Delete</Button>
+                                  }
+                                </CardFooter>
+                              </Card>
+                              </div>
                             ))
                         }
-                    </div>
-
-                    <div className="m-9 relative overflow-x-auto shadow-md sm:rounded-lg">
-                        <table class="w-full marker:text-sm text-left text-gray-500">
-                            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
-                                <tr>
-                                    <th scope="col" class="text-center border px-6 py-3">
-                                        Title
-                                    </th>
-                                    <th scope="col" class="text-center border px-9 py-3">
-                                        Start Time
-                                    </th>
-                                    <th scope="col" class="text-center border px-12 py-3">
-                                        End Time
-                                    </th>
-                                    <th scope="col" class="text-center border px-6 py-3">
-                                        Location
-                                    </th>
-                                    <th scope="col" class="text-center border px-6 py-3">
-                                        Action
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {
-                                    events.map((event) => (
-                                        <tr class="bg-white border-b">
-                                            <td class="text-center border  px-6 py-4">{event.title}</td>
-                                            <td class="text-center border px-6 py-4">{event.startTime}</td>
-                                            <td class="text-center border px-6 py-4">{event.endTime}</td>
-                                            <td class="text-center border px-6 py-4">{event.location}</td>
-                                            <td class="text-center border px-6 py-4">
-                                                <div className="flex flex-row justify-center">
-                                                    <p onClick={() => viewEvent(event.eventID)} className="transition-all mx-2 font-medium text-yellow-400 hover:underline hover:cursor-pointer">View</p>
-                                                    {isStaff &&
-                                                        <p onClick={() => editEvent(event.eventID)} className="transition-all mx-2 font-medium text-blue-600 dark:text-blue-500 hover:underline hover:cursor-pointer">Edit</p>
-                                                    }
-                                                    {isStaff &&
-                                                        <p onClick={() => deleteEvent(event.eventID)} className="transition-all mx-2 font-medium text-red-600 dark:text-red-600 hover:underline hover:cursor-pointer">Delete</p>
-                                                    }
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    ))
-                                }
-                            </tbody>
-                        </table>
                     </div>
                 </div>
             </div>
