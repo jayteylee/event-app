@@ -4,6 +4,10 @@
  */
 package org.example.domain;
 
+import java.time.LocalDateTime;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,34 +19,65 @@ public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int bookingId;
+    private String eventId;
+    private String studentId;
+    private String eventTitle;
+    private String eventLocation;
 
-    public String eventId;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDateTime eventStartTime;
 
-    public String studentId;
 
     public Booking(){
     }
 
-    public Booking(int bookingId, String eventId, String studentId) {
+    public Booking(int bookingId, String eventId, String studentId, String eventTitle, String eventLocation, LocalDateTime eventStartTime) {
         this.bookingId = bookingId;
         this.eventId = eventId;
         this.studentId = studentId;
+        this.eventTitle = eventTitle;
+        this.eventLocation = eventLocation;
+        this.eventStartTime = eventStartTime;
     }
 
     public int getBookingId() {
         return bookingId;
     }
 
+    public String getEventTitle(){
+        return eventTitle;
+    }
+
+    public void setEventTitle(String eventTitle){
+        this.eventTitle = eventTitle;
+    }
+
+    public void setEventLocation(String eventLocation){
+        this.eventLocation = eventLocation;
+    }
+
+    public void setEventStartTime(LocalDateTime eventStartTime){
+        this.eventStartTime = eventStartTime;
+    }
+
+    public String getEventLocation(){
+        return eventLocation;
+    }
+
+    public LocalDateTime getEventStartTime(){
+        return eventStartTime;
+    }
+
     public void setBookingId(int bookingId) {
         this.bookingId = bookingId;
     }
 
-    public String getEventID() {
+    public String getEventId() {
         return eventId;
     }
 
-    public void setEventID(String eventID) {
-        this.eventId = eventID;
+    public void setEventId(String eventId) {
+        this.eventId = eventId;
     }
 
     public String getStudentId() {

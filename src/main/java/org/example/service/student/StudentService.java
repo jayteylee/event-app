@@ -12,6 +12,8 @@ public interface StudentService {
 
     Student getStudentById(Long id);
 
+    Student getStudentByEmail(String email);
+
     Student updateStudent(Student newStudent, Long id);
 
     List<Student> deleteStudent(Long id);
