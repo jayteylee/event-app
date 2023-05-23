@@ -34,6 +34,11 @@ function EditEventForm(props) {
             return;
         }
 
+        if (capacity <= 0) {
+            alert('Capacity must be greater than 0.');
+            return;
+        }
+
         if (!location) {
             alert('Location is required.');
             return;
