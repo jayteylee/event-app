@@ -27,6 +27,11 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    public Student getStudentByEmail(String email) {
+        return studentRepository.findByEmail(email)
+                .orElseThrow(() -> new ObjectNotFoundException(email));
+    }
+    @Override
     public Student getStudentById(Long id) {
         return studentRepository.findById(id)
                 .orElseThrow(() -> new ObjectNotFoundException(id));
