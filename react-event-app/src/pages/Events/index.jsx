@@ -81,8 +81,10 @@ function Events() {
                 <div className="flex flex-col w-1/5 h-full bg-slate-50 shadow-lg">
                     <h2 className="text-3xl font-bold text-center mt-8">Kia Ora!</h2>
                     <hr className="border-b border-gray-300 w-11/12 mx-auto my-4" />
+                    {!isStaff && 
                     <h2 className="font-semibold text-center mt-2">Here are your bookings:</h2>
-                    {empty &&
+                    }
+                    {empty && !isStaff &&
                         <h3 className="text-center mt-8 italic">You have no bookings...</h3>
                     }
                     {
