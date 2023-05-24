@@ -42,6 +42,7 @@ public class EventServiceImpl implements EventService  {
                     event.setLocation(newEvent.getLocation());
                     event.setCapacity(newEvent.getCapacity());
                     event.setDescription(newEvent.getDescription());
+                    event.setSubject(newEvent.getSubject());
                     return eventRepository.save(event);
                 }).orElseThrow(() -> new ObjectNotFoundException(id));
     }

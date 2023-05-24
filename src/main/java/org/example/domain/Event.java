@@ -27,6 +27,7 @@ public class Event {
     private String location;
     private int capacity;
     private String description;
+    private String subject;
 
     public Event(){ 
     }
@@ -39,8 +40,15 @@ public class Event {
         this.location = location;
         this.capacity = capacity;
         this.description = description;
+        this.subject = subject;
+    }
+    public String getSubject() {
+        return subject;
     }
 
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
     public long getEventID() {
         return eventId;
     }

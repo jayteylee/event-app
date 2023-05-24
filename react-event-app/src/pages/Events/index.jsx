@@ -125,13 +125,16 @@ function Events() {
                         {
                             events.map((event, index) => (
                                 <div className="w-full mx-6">
-                                <Card className="mt-6 w-[350px] h-60 mx-2 rounded-lg shadow-xl bg-gray-50">
+                                <Card className="mt-6 w-[350px] h-64 mx-2 rounded-lg shadow-xl bg-gray-50">
                                 <CardBody className="h-4/5">
                                   <Typography variant="h5" color="blue-gray" className=" h-14 w-full text-overflow: ellipsis;">
                                     {event.title}
                                   </Typography>
                                   <Typography variant="h1" color="blue-gray" className="w-full my-2">
                                     {event.location}
+                                  </Typography>
+                                  <Typography className="w-full my-2">
+                                    Capacity: {event.capacity}
                                   </Typography>
                                   <Typography className="w-full">
                                     {event.description}
