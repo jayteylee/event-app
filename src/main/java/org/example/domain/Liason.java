@@ -21,9 +21,10 @@ public class Liason {
     public LocalDateTime startTime;
     public String location;
 
-    public Liason(){
+    public Liason() {
     }
 
+    // Parameterized constructor
     public Liason(int liasonId, String title, LocalDateTime startTime, String location) {
         this.liasonId = liasonId;
         this.title = title;
@@ -31,6 +32,7 @@ public class Liason {
         this.location = location;
     }
 
+    // Getter and Setter Methods
     public int getLiasonId() {
         return liasonId;
     }

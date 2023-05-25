@@ -16,12 +16,15 @@ public class Staff {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int staffId;
     public String password;
-    public String firstName; 
+    public String firstName;
     public String lastName;
     public String email;
     public String phoneNumber;
 
-    public Staff(){}
+    public Staff() {
+    }
+
+    // Parameterized constructor
 
     public Staff(int staffId, String password, String firstName, String lastName, String email, String phoneNumber) {
         this.staffId = staffId;
@@ -31,6 +34,8 @@ public class Staff {
         this.email = email;
         this.phoneNumber = phoneNumber;
     }
+
+    // Getters and Setters
 
     public int getStaffId() {
         return staffId;

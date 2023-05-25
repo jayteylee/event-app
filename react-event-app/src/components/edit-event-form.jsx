@@ -7,6 +7,7 @@ function EditEventForm(props) {
 
     const {id} = useParams();
 
+     // State variables for form fields
     const [title, setTitle] = useState('');
     const [type, setType] = useState('');
     const [startTime, setStartTime] = useState('');
@@ -43,7 +44,7 @@ function EditEventForm(props) {
             alert('Location is required.');
             return;
         }
-
+        // Send PUT request to update event
         await axios.put(`http://localhost:8081/events/${id}`, {
             title: title,
             type: type,
@@ -54,15 +55,19 @@ function EditEventForm(props) {
             capacity: capacity,
             description: description
         });
+        // Navigate to events page after successful update
         navigate('/events');
     };
 
     useEffect(() => {
+        // Load the event data when the component mounts
         loadEvent();
     }, []);
 
     const loadEvent = async () => {
+        // Fetch event data from the server
         const result = await axios.get(`http://localhost:8081/events/${id}`)
+        // Set the form field values with the fetched data
         setTitle(result.data.title);
         setType(result.data.type);
         setStartTime(result.data.startTime);
@@ -75,6 +80,7 @@ function EditEventForm(props) {
 
     const onCancelClick = (e) => {
         e.preventDefault()
+        // Navigate to events page when cancel button is clicked
         navigate('/events');
     }
     return (

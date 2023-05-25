@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 function EditScholarshipForm(){
         const navigate = useNavigate();
         const {id} = useParams();
+        // State variables for form fields
         const [name, setName] = useState('');
         const [type, setType] = useState('');
         const [subject, setSubject] = useState('');
@@ -33,26 +34,32 @@ function EditScholarshipForm(){
                 return;
             }
 
+            // Send PUT request to update scholarship
             await axios.put(`http://localhost:8081/scholarships/${id}`, {
                 name: name,
                 type: type,
                 subject: subject,
                 numAvailable: numAvailable
             });
+            // Navigate to scholarships page after successful update
             navigate('/scholarships');
         };
     
         const onCancelClick = (e) => {
             e.preventDefault()
+            // Navigate to scholarships page when cancel button is clicked
             navigate('/scholarships');
         }
 
         useEffect(() => {
+            // Load the scholarship data when the component mounts
             loadScholarship();
         }, []);
 
         const loadScholarship = async () => {
+            // Fetch scholarship data from the server
             const result = await axios.get(`http://localhost:8081/scholarships/${id}`)
+             // Set the form field values with the fetched data
             setName(result.data.name);
             setType(result.data.type);
             setSubject(result.data.subject);

@@ -4,16 +4,19 @@ import { useNavigate } from 'react-router-dom';
 function Navigation(){
     const navigate = useNavigate();
 
+    // Check if the user is logged in
     const isLoggedIn = localStorage.getItem('isLoggedIn');
     
+    // Get user information from local storage
     const user = localStorage.getItem('user');
 
+    // Get staff information from local storage
     const staff = localStorage.getItem('staff');
 
     console.log(staff);
 
 
-
+    // Handle click event on navigation buttons
     const handleClick = (e) => {
         e.preventDefault()
         navigate(`/${e.target.value}`)

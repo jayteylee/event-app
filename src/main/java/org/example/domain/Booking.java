@@ -27,11 +27,11 @@ public class Booking {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime eventStartTime;
 
-
-    public Booking(){
+    public Booking() {
     }
 
-    public Booking(int bookingId, String eventId, String studentId, String eventTitle, String eventLocation, LocalDateTime eventStartTime) {
+    public Booking(int bookingId, String eventId, String studentId, String eventTitle, String eventLocation,
+            LocalDateTime eventStartTime) {
         this.bookingId = bookingId;
         this.eventId = eventId;
         this.studentId = studentId;
@@ -40,31 +40,32 @@ public class Booking {
         this.eventStartTime = eventStartTime;
     }
 
+    // Getter and Setter Methods
     public int getBookingId() {
         return bookingId;
     }
 
-    public String getEventTitle(){
+    public String getEventTitle() {
         return eventTitle;
     }
 
-    public void setEventTitle(String eventTitle){
+    public void setEventTitle(String eventTitle) {
         this.eventTitle = eventTitle;
     }
 
-    public void setEventLocation(String eventLocation){
+    public void setEventLocation(String eventLocation) {
         this.eventLocation = eventLocation;
     }
 
-    public void setEventStartTime(LocalDateTime eventStartTime){
+    public void setEventStartTime(LocalDateTime eventStartTime) {
         this.eventStartTime = eventStartTime;
     }
 
-    public String getEventLocation(){
+    public String getEventLocation() {
         return eventLocation;
     }
 
-    public LocalDateTime getEventStartTime(){
+    public LocalDateTime getEventStartTime() {
         return eventStartTime;
     }
 
