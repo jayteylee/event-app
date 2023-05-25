@@ -2,16 +2,19 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+// Component for creating an Research opportunity
 function CreateResearchForm() {
     const navigate = useNavigate();
 
+    //State variables for form inputs
     const [title, setTitle] = useState('');
     const [type, setType] = useState('');
     const [subject, setSubject] = useState('');
 
+    // Function to handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+    // Validation checks
         if (!title) {
             alert('Title is required.');
             return;
@@ -21,19 +24,21 @@ function CreateResearchForm() {
             alert('Subject is required.');
             return;
         }
-
+        // Send a POST request to create the event using axios
         await axios.post("http://localhost:8081/research", {
             title: title,
             type: type,
             subject: subject,
         });
+        // Navigate to the events page after the event is created
         navigate('/research');
     };
-
+    // Function to handle cancel button click
     const onCancelClick = (e) => {
         e.preventDefault()
         navigate('/research');
     }
+    // JSX code for the form UI
     return (
         <div className="w-full h-full flex justify-center mt-28">
             <div className="border rounded-lg shadow-lg flex flex-col justify-center">

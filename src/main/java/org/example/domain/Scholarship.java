@@ -20,8 +20,10 @@ public class Scholarship {
     public String subject;
     public int numAvailable;
 
-    public Scholarship(){
+    public Scholarship() {
     }
+
+    // Parameterized constructor
 
     public Scholarship(int scholarshipId, String name, String type, String subject, int numAvailable) {
         this.scholarshipId = scholarshipId;
@@ -30,6 +32,7 @@ public class Scholarship {
         this.subject = subject;
         this.numAvailable = numAvailable;
     }
+    // Getters and Setters
 
     public int getScholarshipId() {
         return scholarshipId;

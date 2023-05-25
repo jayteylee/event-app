@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin("http://localhost:3000")
-public class StudentController{
+public class StudentController {
 
     @Autowired
     private StudentService studentService;
@@ -26,15 +26,16 @@ public class StudentController{
 
     @PostMapping("/student/login")
     public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
-        // Validate the username and password against your database or authentication provider
+        // Validate the username and password against your database or authentication
+        // provider
         boolean isValidCredentials = studentService.authenticate(loginRequest.getEmail(), loginRequest.getPassword());
-        
+
         if (isValidCredentials) {
             // Create a JWT using the user's username as the subject and a secret key
             String jwt = Jwts.builder()
-            .setSubject(loginRequest.getEmail())
-            .signWith(Keys.secretKeyFor(SignatureAlgorithm.HS256))
-            .compact();
+                    .setSubject(loginRequest.getEmail())
+                    .signWith(Keys.secretKeyFor(SignatureAlgorithm.HS256))
+                    .compact();
             // Return the JWT in the response body
             return ResponseEntity.ok(jwt);
         } else {
@@ -42,31 +43,38 @@ public class StudentController{
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
     }
+
+    // Gets student by email
     @GetMapping("/students/email/{email}")
-    Student getStudentByEmail(@PathVariable String email){
+    Student getStudentByEmail(@PathVariable String email) {
         return studentService.getStudentByEmail(email);
     }
 
+    // Gets all students
     @GetMapping("/students")
-    List<Student> getAllStudents(){
+    List<Student> getAllStudents() {
         return studentService.getAllStudents();
     }
 
+    // Gets students by ID
     @GetMapping("/students/id/{id}")
     Student getStudentById(@PathVariable Long id) {
         return studentService.getStudentById(id);
     }
 
+    // Creat Students
     @PostMapping("/students")
-    Student createStudent(@RequestBody Student student){
+    Student createStudent(@RequestBody Student student) {
         return studentService.createStudent(student);
     }
 
+    // Updates Students
     @PutMapping("/students/id/{id}")
-    Student updateStudent(@RequestBody Student student, @PathVariable Long id){
+    Student updateStudent(@RequestBody Student student, @PathVariable Long id) {
         return studentService.updateStudent(student, id);
     }
 
+    // Delete Students
     @DeleteMapping("/students/id/{id}")
     List<Student> deleteStudent(@PathVariable Long id) {
         return studentService.deleteStudent(id);

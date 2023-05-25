@@ -29,10 +29,12 @@ public class Event {
     private String description;
     private String subject;
 
-    public Event(){ 
+    public Event() {
     }
 
-    public Event(Long eventId, String type, LocalDateTime startTime, LocalDateTime endTime, String subject, String location, int capacity, String description){
+    // Parameterized constructor
+    public Event(Long eventId, String type, LocalDateTime startTime, LocalDateTime endTime, String subject,
+            String location, int capacity, String description) {
         this.eventId = eventId;
         this.type = type;
         this.startTime = startTime;
@@ -42,6 +44,9 @@ public class Event {
         this.description = description;
         this.subject = subject;
     }
+
+    // Getter and Setter Methods
+
     public String getSubject() {
         return subject;
     }
@@ -49,6 +54,7 @@ public class Event {
     public void setSubject(String subject) {
         this.subject = subject;
     }
+
     public long getEventID() {
         return eventId;
     }

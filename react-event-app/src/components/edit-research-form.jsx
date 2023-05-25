@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 function EditResearchForm() {
     const navigate = useNavigate();
     const {id} = useParams();
+    // State variables for form fields
     const [title, setTitle] = useState('');
     const [type, setType] = useState('');
     const [subject, setSubject] = useState('');
@@ -22,25 +23,32 @@ function EditResearchForm() {
             return;
         }
 
+        // Send PUT request to update research form
         await axios.put(`http://localhost:8081/research/${id}`, {
             title: title,
             type: type,
             subject: subject,
         });
+        // Navigate to research page after successful update
         navigate('/research');
     };
 
     const onCancelClick = (e) => {
         e.preventDefault()
+        // Navigate to events page when cancel button is clicked
         navigate('/research');
     }
 
     useEffect(() => {
+        // Load the reaserch form data when the component mounts
         loadResearch();
     }, []);
 
     const loadResearch = async () => {
+        // Fetch research data from the server
         const result = await axios.get(`http://localhost:8081/research/${id}`)
+
+        // Set the form field values with the fetched data
         setTitle(result.data.title);
         setType(result.data.type);
         setSubject(result.data.subject);

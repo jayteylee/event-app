@@ -14,30 +14,37 @@ public class ResearchOpportunityController {
     @Autowired
     private ResearchOpportunityService researchOpportunityService;
 
+    // Constructor injection for ReaserchOppportunityService
     public ResearchOpportunityController(ResearchOpportunityService researchOpportunityService) {
         this.researchOpportunityService = researchOpportunityService;
     }
 
+    // Get all research
     @GetMapping("/research")
-    List<ResearchOpportunity> getAllResearchOpportunitys(){
+    List<ResearchOpportunity> getAllResearchOpportunitys() {
         return researchOpportunityService.getAllResearchOpportunitys();
     }
 
+    // Get research by ID
     @GetMapping("/research/{id}")
     ResearchOpportunity getResearchOpportunityById(@PathVariable Long id) {
         return researchOpportunityService.getResearchOpportunityById(id);
     }
 
+    // Create a new research
     @PostMapping("/research")
-    ResearchOpportunity createResearchOpportunity(@RequestBody ResearchOpportunity researchOpportunity){
+    ResearchOpportunity createResearchOpportunity(@RequestBody ResearchOpportunity researchOpportunity) {
         return researchOpportunityService.createResearchOpportunity(researchOpportunity);
     }
 
+    // Update an research
     @PutMapping("/research/{id}")
-    ResearchOpportunity updateResearchOpportunity(@RequestBody ResearchOpportunity researchOpportunity, @PathVariable Long id){
+    ResearchOpportunity updateResearchOpportunity(@RequestBody ResearchOpportunity researchOpportunity,
+            @PathVariable Long id) {
         return researchOpportunityService.updateResearchOpportunity(researchOpportunity, id);
     }
 
+    // Delete an research
     @DeleteMapping("/research/{id}")
     List<ResearchOpportunity> deleteResearchOpportunity(@PathVariable Long id) {
         return researchOpportunityService.deleteResearchOpportunity(id);

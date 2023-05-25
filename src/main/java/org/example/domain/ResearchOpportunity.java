@@ -19,15 +19,18 @@ public class ResearchOpportunity {
     public String type;
     public String subject;
 
-    public ResearchOpportunity(){ 
+    public ResearchOpportunity() {
     }
 
+    // Parameterized constructor
     public ResearchOpportunity(int opportunityId, String title, String type, String subject) {
         this.opportunityId = opportunityId;
         this.title = title;
         this.type = type;
         this.subject = subject;
     }
+
+    // Geters and Setters
 
     public int getOpportunityId() {
         return opportunityId;

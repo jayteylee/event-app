@@ -5,6 +5,8 @@ import { useNavigate, useParams } from "react-router-dom";
 function EditLiasonForm() {
     const navigate = useNavigate();
     const {id} = useParams();
+
+    // State variables for form fields
     const [title, setTitle] = useState('');
     const [startTime, setStartTime] = useState('');
     const [location, setLocation] = useState('');
@@ -32,20 +34,25 @@ function EditLiasonForm() {
             startTime: startTime,
             location: location,
         });
+        // Navigate to liasons page after successful update
         navigate('/liasons');
     };
 
     const onCancelClick = (e) => {
         e.preventDefault()
+        // Navigate to liasons page when cancel button is clicked
         navigate('/liasons');
     }
 
     useEffect(() => {
+        // Load the liason data when the component mounts
         loadLiason();
     }, []);
 
     const loadLiason = async () => {
+         // Fetch liason data from the server
         const result = await axios.get(`http://localhost:8081/liasons/${id}`)
+        // Set the form field values with the fetched data
         setTitle(result.data.title);
         setStartTime(result.data.startTime);
         setLocation(result.data.location);

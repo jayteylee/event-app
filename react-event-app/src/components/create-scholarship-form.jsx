@@ -2,17 +2,21 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+// Component for creating an Scholarship form
 function CreateScholarshipForm(){
     const navigate = useNavigate();
 
+// State variables for form inputs
     const [name, setName] = useState('');
     const [type, setType] = useState('');
     const [subject, setSubject] = useState('');
     const [numAvailable, setNumAvailable] = useState('');
 
+    // Function to handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        // Validation checks
         if (!name) {
             alert('Name is required.');
             return;
@@ -33,19 +37,22 @@ function CreateScholarshipForm(){
             return;
         }
 
+        // Send a POST request to create the event using axios
         await axios.post("http://localhost:8081/scholarships", {
             name: name,
             type: type,
             subject: subject,
             numAvailable: numAvailable
         });
+        // Navigate to the events page after the event is created
         navigate('/scholarships');
     };
-
+    // Function to handle cancel button click
     const onCancelClick = (e) => {
         e.preventDefault()
         navigate('/scholarships');
     }
+    // JSX code for the form UI
     return(
         <div className="w-full h-full flex justify-center mt-28">
             <div className="border rounded-lg shadow-lg flex flex-col justify-center">
