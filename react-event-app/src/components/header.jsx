@@ -35,7 +35,7 @@ function HeaderSection() {
                         <div className="flex flex-col justify-center ml-auto mr-8">
                             {isLoggedIn && (
                                 <button value="login" type="button" onClick={handleLogout} className="hover:shadow-lg hover:text-lg transition-all font-poppins text-white mx-2">
-                                    Logout
+                                    Sign out
                                 </button>
                             )}
                         </div>
