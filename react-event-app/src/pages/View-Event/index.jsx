@@ -11,6 +11,9 @@ function ViewEvent() {
     const [eventTitle, setEventTitle] = useState("");
     const [eventLocation, setEventLocation] = useState("");
     const [eventStartTime, setEventStartTime] = useState("");
+    const [eventSubject, setEventSubject] = useState("");
+    const [eventCapacity, setEventCapacity] = useState("");
+
     const navigate = useNavigate();
     const studentId = sessionStorage.getItem("studentId");
 
@@ -26,8 +29,8 @@ function ViewEvent() {
         setEventTitle(result.data.title);
         setEventLocation(result.data.location);
         setEventStartTime(result.data.startTime);
-
-        console.log(result.data.eventTitle);
+        setEventSubject(result.data.subject);
+        setEventCapacity(result.data.capacity);
     }
 
     const isStaff = sessionStorage.getItem('staff');
@@ -76,6 +79,14 @@ function ViewEvent() {
                         <div className="flex flex-row">
                             <h3 className="mr-3 w-1/5">Description:</h3>
                             <p className="px-3 rounded-md shadow-md">{event.description}</p>
+                        </div>
+                        <div className="flex flex-row">
+                            <h3 className="mr-3 w-1/5">Subject:</h3>
+                            <p className="px-3 rounded-md shadow-md">{event.subject}</p>
+                        </div>
+                        <div className="flex flex-row">
+                            <h3 className="mr-3 w-1/5">Capacity:</h3>
+                            <p className="px-3 rounded-md shadow-md">{event.capacity}</p>
                         </div>
                         <div className="flex flex-col">
                             <div className="flex flex-row justify-center h-10 my-2">
