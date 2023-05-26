@@ -11,7 +11,7 @@ import java.util.List;
 import static java.lang.Long.parseLong;
 
 @RestController
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin
 public class BookingController {
 
     @Autowired

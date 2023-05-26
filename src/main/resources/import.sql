@@ -28,7 +28,9 @@ INSERT INTO Student (student_id, name, email, password, dob) VALUES (123456789, 
 INSERT INTO Student (student_id, name, email, password, dob) VALUES (987654321, 'Jay Lee', 'leeja123@gmail.com', '0cb3442b-dcc6-41a1-9203-b3940eead052', '1942-1-4');
 INSERT INTO Student (student_id, name, email, password, dob) VALUES (111111, 'Call', 'cal@gmail.com', '27392bdc-8d84-4416-a55a-115ea88d9194', '1989-09-02');
 INSERT INTO Student (student_id, name, email, password, dob) VALUES (1, 'Mahfuz', 'fuz@gmail.com', '010f2042-af58-4626-ba5d-3ad53e826b51', '2010-10-10');
+INSERT INTO Student (student_id, name, email, password, dob) VALUES (555, 'Daniel', 'daniel@student.otago.ac.nz', 'password', '2023-05-26');
 
+INSERT INTO Staff (staff_id, email, first_name, last_name, password, phone_number) VALUES (2452562, 'daniel@staff.otago.ac.nz', 'Daniel', 'Alencar', 'password', '0211235069');
 INSERT INTO Staff (staff_id, email, first_name, last_name, password, phone_number) VALUES (2976743, 'cal@staff.otago.ac.nz', 'Cal', 'Keenan', '123', '0271234567');
 INSERT INTO Staff (staff_id, email, first_name, last_name, password, phone_number) VALUES (1976743, 'jay@staff.otago.ac.nz', 'Jay', 'Lee', '123', '0221234567');
 INSERT INTO Staff (staff_id, email, first_name, last_name, password, phone_number) VALUES (0976743, 'lac@staff.otago.ac.nz', 'Lachy', 'Kitchen', '123', '0231234567');
